@@ -1,10 +1,11 @@
 const mysql = require('mysql2');
+require('dotenv').config();
 
 // Create a MySQL connection pool
 const db = mysql.createConnection({
     host: 'localhost', // Your database host (e.g., localhost)
-    user: 'robin', // Your database user
-    password: 'robinhood', // Your database password
+    user: process.env.DB_USER, // Your database user
+    password: process.env.DB_PASS, // Your database password
     database: 'hms', // Your database name
   });
 
