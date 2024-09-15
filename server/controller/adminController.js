@@ -81,6 +81,74 @@ exports.register = async (req, res) => {
     
                            // ===== Admin Services=====
 
+  // get All Patients
+  exports.getAllPatients = (req, res) => {
+    const sql = 'SELECT patient_id,name,phone,age FROM patients';
+    
+    db.query(sql, (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: 'Database error' });
+      }
+      
+      res.status(200).json({
+        message: 'Patients retrieved successfully',
+        data: results
+      });
+    });
+  };
+  
 
-// Add a Doctor
+
+
+
+// Add Doctor
+
+exports.addDoctor = async (req, res) => {
+    const { name, phone, age, department, qualification, gender, specialist } = req.body;
+  
+    // Check if the phone number already exists
+    const checkPhoneSql = `SELECT * FROM doctor WHERE phone = ?`;
+    db.query(checkPhoneSql, [phone], async (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: 'Database error' });
+      }
+  
+      // If phone number already exists
+      if (result.length > 0) {
+        return res.status(400).json({ error: 'Phone number already registered' });
+      }
+  
+      // If phone number is not in the database, proceed with registration
+      try {
+       
+  
+        const sql = `INSERT INTO doctor (name, phone, age, department, qualification, gender, specialist) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+        db.query(sql, [name, phone, age, department, qualification, gender, specialist], (err, result) => {
+          if (err) {
+            return res.status(500).json({ error: 'Error during registration' });
+          }
+          res.status(201).json({ message: 'Doctor registered successfully!' });
+        });
+      } catch (error) {
+        return res.status(500).json({ error: 'Error hashing password' });
+      }
+    });
+  };
+  
+  // get All Doctor
+  exports.getAllDoctors = (req, res) => {
+    const sql = 'SELECT * FROM doctor';
+    
+    db.query(sql, (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: 'Database error' });
+      }
+      
+      res.status(200).json({
+        message: 'Doctors retrieved successfully',
+        data: results
+      });
+    });
+  };
+  
 
