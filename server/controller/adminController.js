@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
     const {phone, password } = req.body;
   
     // Check if the phone number already exists
-    const checkPhoneSql = `SELECT * FROM patients WHERE phone = ?`;
+    const checkPhoneSql = `SELECT * FROM admin WHERE phone = ?`;
     db.query(checkPhoneSql, [phone], async (err, result) => {
       if (err) {
         return res.status(500).json({ error: 'Database error' });
@@ -25,8 +25,8 @@ exports.register = async (req, res) => {
       try {
         const hashedPassword = await bcrypt.hash(password, 10);
   
-        const sql = `INSERT INTO patients (name, phone, age, password) VALUES (?, ?, ?, ?)`;
-        db.query(sql, [name, phone, age, hashedPassword], (err, result) => {
+        const sql = `INSERT INTO admin (phone, password) VALUES (?, ?)`;
+        db.query(sql, [ phone, hashedPassword], (err, result) => {
           if (err) {
             return res.status(500).json({ error: 'Error during registration' });
           }
@@ -44,7 +44,7 @@ exports.register = async (req, res) => {
   exports.login = (req, res) => {
       const { phone, password } = req.body;
     
-      const sql = `SELECT * FROM patients WHERE phone = ?`;
+      const sql = `SELECT * FROM admin WHERE phone = ?`;
       db.query(sql, [phone], async (err, result) => {
         if (err || result.length === 0) {
           return res.status(400).json({ error: 'Admin not found' });
@@ -61,7 +61,7 @@ exports.register = async (req, res) => {
         const token = jwt.sign({ id: Admin.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
     
         // Send token as a cookie
-        res.cookie('token', token, {
+        res.cookie('admintoken', token, {
           httpOnly: true, // Prevent client-side access to the cookie
           secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
           maxAge: 3600000, // 1 hour
@@ -71,9 +71,16 @@ exports.register = async (req, res) => {
       });
     };
   
-  
+
+//   Admin Logout
+
     exports.logout = (req, res) => {
-      res.clearCookie('token');
+      res.clearCookie('admintoken');
       res.status(200).json({ message: 'Logout successful' });
     };
     
+                           // ===== Admin Services=====
+
+
+// Add a Doctor
+
