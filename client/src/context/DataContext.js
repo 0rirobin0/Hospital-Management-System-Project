@@ -6,63 +6,6 @@ const DataContext = createContext();
 
 // Create a provider component
 export const DataProvider = ({ children }) => {
-  const universities = [
-    "Shahjalal University of Science and Technology",
-    "Bangladesh University of Engineering and Technology",
-    "University of Dhaka",
-    "Jahangirnagar University",
-    "Islamic University of Technology",
-    "BRAC University",
-    "Pabna University of Science and Technology",
-    "University of Rajshahi",
-    "Military Institute of Science and Technology",
-    "Bangladesh University of Professionals",
-    "American International University-Bangladesh",
-    "North South University",
-    "East West University",
-    "Daffodil International University",
-    "University of Liberal Arts Bangladesh",
-    "United International University",
-    "Independent University, Bangladesh",
-    "Southeast University",
-    "Ahsanullah University of Science and Technology",
-    "University of Asia Pacific",
-  ];
-
-  const departments = [
-    "CSE",
-    "SWE",
-    "EEE",
-    "CEE",
-    "PHY",
-    "MAT",
-    "CHE",
-    "BBA",
-    "ECO",
-    "LAW",
-    "SOC",
-    "ENG",
-    "BIO",
-    "ARC",
-  ];
-
-  const courses = [
-    "Database",
-    "Architecture",
-    "AI",
-    "ML",
-    "SRE",
-    "Datastructure",
-    "OS",
-    "OOP",
-    "Economics",
-    "Business Law",
-    "Sociology",
-    "Literature",
-    "Biology",
-    "Physics",
-    "Chemistry",
-  ];
   const appointments = [
     {
       name: "Ques1daD",
@@ -226,6 +169,7 @@ export const DataProvider = ({ children }) => {
       mark: "Mark",
     },
   ];
+
   const doctorInfo = [
     {
       name: "Rakib",
@@ -1325,6 +1269,168 @@ export const DataProvider = ({ children }) => {
       number: "+880 1827364957",
     },
   ];
+  const myBillList = [
+    {
+      bill_ID: "5132",
+      date: "07 Apr 2024",
+      amount: "5000 tk",
+      description: "Appendice operation done",
+      payment_Status: "Paid",
+      method: "Card",
+    },
+    {
+      bill_ID: "5133",
+      date: "08 Apr 2024",
+      amount: "3000 tk",
+      description: "General checkup",
+      payment_Status: "Unpaid",
+      method: "Cash",
+    },
+    {
+      bill_ID: "5134",
+      date: "09 Apr 2024",
+      amount: "12000 tk",
+      description: "Heart surgery",
+      payment_Status: "Paid",
+      method: "Bank",
+    },
+    {
+      bill_ID: "5135",
+      date: "10 Apr 2024",
+      amount: "7500 tk",
+      description: "Orthopedic treatment",
+      payment_Status: "Unpaid",
+      method: "Nagad",
+    },
+    {
+      bill_ID: "5136",
+      date: "11 Apr 2024",
+      amount: "4000 tk",
+      description: "Maternity care",
+      payment_Status: "Paid",
+      method: "Baksh",
+    },
+    {
+      bill_ID: "5137",
+      date: "12 Apr 2024",
+      amount: "6800 tk",
+      description: "Neurology consultation",
+      payment_Status: "Unpaid",
+      method: "Rocket",
+    },
+    {
+      bill_ID: "5138",
+      date: "13 Apr 2024",
+      amount: "8500 tk",
+      description: "Kidney dialysis",
+      payment_Status: "Paid",
+      method: "Nagad",
+    },
+    {
+      bill_ID: "5139",
+      date: "14 Apr 2024",
+      amount: "3500 tk",
+      description: "Pediatric consultation",
+      payment_Status: "Paid",
+      method: "Card",
+    },
+    {
+      bill_ID: "5140",
+      date: "15 Apr 2024",
+      amount: "6000 tk",
+      description: "ENT surgery",
+      payment_Status: "Unpaid",
+      method: "Cash",
+    },
+    {
+      bill_ID: "5141",
+      date: "16 Apr 2024",
+      amount: "9200 tk",
+      description: "Dental care",
+      payment_Status: "Paid",
+      method: "Bank",
+    },
+    {
+      bill_ID: "5142",
+      date: "17 Apr 2024",
+      amount: "7800 tk",
+      description: "Liver surgery",
+      payment_Status: "Unpaid",
+      method: "Baksh",
+    },
+    {
+      bill_ID: "5143",
+      date: "18 Apr 2024",
+      amount: "4300 tk",
+      description: "Dermatology consultation",
+      payment_Status: "Paid",
+      method: "Rocket",
+    },
+    {
+      bill_ID: "5144",
+      date: "19 Apr 2024",
+      amount: "5200 tk",
+      description: "Eye surgery",
+      payment_Status: "Unpaid",
+      method: "Nagad",
+    },
+    {
+      bill_ID: "5145",
+      date: "20 Apr 2024",
+      amount: "9700 tk",
+      description: "Gynecology consultation",
+      payment_Status: "Paid",
+      method: "Card",
+    },
+    {
+      bill_ID: "5146",
+      date: "21 Apr 2024",
+      amount: "6400 tk",
+      description: "Urology treatment",
+      payment_Status: "Unpaid",
+      method: "Baksh",
+    },
+    {
+      bill_ID: "5147",
+      date: "22 Apr 2024",
+      amount: "7800 tk",
+      description: "Oncology treatment",
+      payment_Status: "Paid",
+      method: "Bank",
+    },
+    {
+      bill_ID: "5148",
+      date: "23 Apr 2024",
+      amount: "3000 tk",
+      description: "General checkup",
+      payment_Status: "Paid",
+      method: "Cash",
+    },
+    {
+      bill_ID: "5149",
+      date: "24 Apr 2024",
+      amount: "4900 tk",
+      description: "Cardiology consultation",
+      payment_Status: "Unpaid",
+      method: "Rocket",
+    },
+    {
+      bill_ID: "5150",
+      date: "25 Apr 2024",
+      amount: "5600 tk",
+      description: "Orthopedic surgery",
+      payment_Status: "Paid",
+      method: "Nagad",
+    },
+    {
+      bill_ID: "5151",
+      date: "26 Apr 2024",
+      amount: "4200 tk",
+      description: "Pulmonology consultation",
+      payment_Status: "Unpaid",
+      method: "Card",
+    },
+  ];
   
   return (
     <DataContext.Provider
@@ -1338,6 +1444,7 @@ export const DataProvider = ({ children }) => {
         ambulanceList,
         emergencyContactList,
         nurseInfo,
+        myBillList,
       }}
     >
       {children}

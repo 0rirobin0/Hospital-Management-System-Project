@@ -8,7 +8,7 @@ function MyBill() {
     <div className="h-full flex flex-col rounded-lg overflow-hidden">
       <div className="overflow-y-auto">
         <table className="w-full table-auto">
-          <thead className="sticky top-0 bg-gray-700 text-white ">
+          <thead className="sticky top-0 bg-gray-700 text-white">
             <tr>
               <th className="px-4 py-2 text-start w-1/6">Bill_ID</th>
               <th className="px-4 py-2 text-start w-1/6">Date</th>
