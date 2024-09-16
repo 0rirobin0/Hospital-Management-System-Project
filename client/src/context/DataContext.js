@@ -170,6 +170,7 @@ export const DataProvider = ({ children }) => {
     },
   ];
 
+
   const doctorInfo = [
     {
       name: "Rakib",
