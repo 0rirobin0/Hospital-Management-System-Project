@@ -9,6 +9,7 @@ import WardRoomList from "@/component/Patient/WardRoomList";
 import AvailableTest from "@/component/Patient/AvailableTest";
 import Ambulance from "@/component/Patient/Ambulance";
 import EmergencyContact from "@/component/Patient/EmergencyContact";
+import AllNurse from "@/component/Patient/AllNurse";
 
 function Patient() {
   const [activeComponent, setActiveComponent] = useState("");
@@ -86,7 +87,7 @@ function Patient() {
               className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
             >
               <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-              Ambulance
+                Ambulance
               </span>
             </button>
             <button
@@ -94,7 +95,15 @@ function Patient() {
               className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
             >
               <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-              Emergency Contact
+                Emergency Contact
+              </span>
+            </button>
+            <button
+              onClick={() => setActiveComponent("allNurse")}
+              className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            >
+              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                All Nurse
               </span>
             </button>
           </div>
@@ -107,7 +116,9 @@ function Patient() {
       </div>
 
       <div className="w-4/5 bg-red-500 p-6 space-y-2">
-        <div className="h-1/6 bg-lime-400 rounded-xl p-2 text-4xl font-bold flex justify-center items-center">Header</div>
+        <div className="h-1/6 bg-lime-400 rounded-xl p-2 text-4xl font-bold flex justify-center items-center">
+          Header
+        </div>
 
         <div className="h-5/6 bg-teal-300 rounded-xl flex flex-col">
           {activeComponent === "createAppointment" && (
@@ -128,14 +139,17 @@ function Patient() {
           {activeComponent === "wardRoomList" && (
             <WardRoomList onClose={() => setActiveComponent("")} />
           )}
-            {activeComponent === "availableTest" && (
+          {activeComponent === "availableTest" && (
             <AvailableTest onClose={() => setActiveComponent("")} />
           )}
           {activeComponent === "ambulance" && (
             <Ambulance onClose={() => setActiveComponent("")} />
           )}
-           {activeComponent === "emergencyContact" && (
+          {activeComponent === "emergencyContact" && (
             <EmergencyContact onClose={() => setActiveComponent("")} />
+          )}
+          {activeComponent === "allNurse" && (
+            <AllNurse onClose={() => setActiveComponent("")} />
           )}
         </div>
       </div>

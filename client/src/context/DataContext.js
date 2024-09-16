@@ -1183,6 +1183,148 @@ export const DataProvider = ({ children }) => {
       dutyTime: "10:00 PM",
     },
   ];
+  const nurseInfo = [
+    {
+      name: "Mrs. Rokeya Hosssem",
+      gender: "Female",
+      allocation: "R-504C",
+      address: "DakhainKhan, Airport, Dhaka",
+      number: "+880 135790378",
+    },
+    {
+      name: "Mr. Jamal Uddin",
+      gender: "Male",
+      allocation: "R-302A",
+      address: "Bashundhara, Dhaka",
+      number: "+880 1728346578",
+    },
+    {
+      name: "Ms. Sharmin Akter",
+      gender: "Female",
+      allocation: "R-210B",
+      address: "Mohammadpur, Dhaka",
+      number: "+880 1672384927",
+    },
+    {
+      name: "Mr. Habib Rahman",
+      gender: "Male",
+      allocation: "R-102D",
+      address: "Banani, Dhaka",
+      number: "+880 1827364859",
+    },
+    {
+      name: "Mrs. Ayesha Siddiqua",
+      gender: "Female",
+      allocation: "R-403B",
+      address: "Gulshan, Dhaka",
+      number: "+880 1738294657",
+    },
+    {
+      name: "Mr. Asaduzzaman",
+      gender: "Male",
+      allocation: "R-301C",
+      address: "Mirpur, Dhaka",
+      number: "+880 1627483921",
+    },
+    {
+      name: "Ms. Nusrat Jahan",
+      gender: "Female",
+      allocation: "R-504A",
+      address: "Dhanmondi, Dhaka",
+      number: "+880 1982734658",
+    },
+    {
+      name: "Mr. Firoz Ahmed",
+      gender: "Male",
+      allocation: "R-206D",
+      address: "Uttara, Dhaka",
+      number: "+880 1792847563",
+    },
+    {
+      name: "Mrs. Rahima Khatun",
+      gender: "Female",
+      allocation: "R-305B",
+      address: "Savar, Dhaka",
+      number: "+880 1847362849",
+    },
+    {
+      name: "Mr. Shahin Alam",
+      gender: "Male",
+      allocation: "R-102B",
+      address: "Malibagh, Dhaka",
+      number: "+880 1638492751",
+    },
+    {
+      name: "Ms. Mahbuba Begum",
+      gender: "Female",
+      allocation: "R-202A",
+      address: "Tejgaon, Dhaka",
+      number: "+880 1928374650",
+    },
+    {
+      name: "Mr. Kamrul Islam",
+      gender: "Male",
+      allocation: "R-208C",
+      address: "Khilgaon, Dhaka",
+      number: "+880 1762483927",
+    },
+    {
+      name: "Mrs. Bilkis Banu",
+      gender: "Female",
+      allocation: "R-307A",
+      address: "Rampura, Dhaka",
+      number: "+880 1728394856",
+    },
+    {
+      name: "Mr. Taufiq Rahman",
+      gender: "Male",
+      allocation: "R-405D",
+      address: "Baridhara, Dhaka",
+      number: "+880 1837462839",
+    },
+    {
+      name: "Ms. Fatema Akter",
+      gender: "Female",
+      allocation: "R-209B",
+      address: "Shantinagar, Dhaka",
+      number: "+880 1657392846",
+    },
+    {
+      name: "Mr. Moin Uddin",
+      gender: "Male",
+      allocation: "R-506A",
+      address: "Agargaon, Dhaka",
+      number: "+880 1827364859",
+    },
+    {
+      name: "Mrs. Asma Khatun",
+      gender: "Female",
+      allocation: "R-306C",
+      address: "Lalmatia, Dhaka",
+      number: "+880 1728394857",
+    },
+    {
+      name: "Mr. Mahbubur Rahman",
+      gender: "Male",
+      allocation: "R-408B",
+      address: "Farmgate, Dhaka",
+      number: "+880 1638471928",
+    },
+    {
+      name: "Ms. Rehana Siddique",
+      gender: "Female",
+      allocation: "R-309D",
+      address: "Jatrabari, Dhaka",
+      number: "+880 1783927462",
+    },
+    {
+      name: "Mr. Aminul Islam",
+      gender: "Male",
+      allocation: "R-407A",
+      address: "Shahbagh, Dhaka",
+      number: "+880 1827364957",
+    },
+  ];
   
   return (
     <DataContext.Provider
@@ -1195,6 +1337,7 @@ export const DataProvider = ({ children }) => {
         availableTest,
         ambulanceList,
         emergencyContactList,
+        nurseInfo,
       }}
     >
       {children}
