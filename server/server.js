@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const patientsRouter = require('./router/patientsRouter');
-const adminRouter = require('./router/adminRouter');
+const doctorRouter = require('./router/DoctorRouter');
 
 
 const app = express();
@@ -28,7 +28,7 @@ app.use(cookieParser()); // Middleware to handle cookies
 
 // Route
 app.use('/patients', patientsRouter);
-app.use('/admin',adminRouter);
+app.use('/doctor',doctorRouter);
 
 
 

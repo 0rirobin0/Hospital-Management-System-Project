@@ -57,8 +57,8 @@ exports.login = (req, res) => {
       }
   
       // Generate JWT token
-      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-  
+      const token = jwt.sign({ id: user.patient_id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+      
       // Send token as a cookie
       res.cookie('token', token, {
         httpOnly: true, // Prevent client-side access to the cookie
@@ -66,7 +66,12 @@ exports.login = (req, res) => {
         maxAge: 3600000, // 1 hour
       });
   
-      res.status(200).json({ message: 'Login successful' });
+      res.status(200).json({ message: 'Login successful' ,
+        id:user.patient_id,
+        name : user.name,
+        phone :user.phone,
+        age : user.age,
+       });
     });
   };
 
@@ -79,3 +84,98 @@ exports.login = (req, res) => {
 
                                                 // ===== Services=====
 
+// get all Doctors
+exports.getAllDoctors = (req, res) => {
+  const sql = 'SELECT doctor_id, name, phone, age, department, qualification, gender, specialist FROM doctor';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'Doctors retrieved successfully',
+      data: results
+    });
+  });
+};
+
+// make a appointment
+exports.createAppointment = (req, res) => {
+  const { doctor_id, time } = req.body;
+ const patient_id = req.patient.id;
+
+ 
+  // Validate input
+  if (!doctor_id || !patient_id || !time) {
+    return res.status(400).json({ error: 'Doctor ID, Patient ID, and time are required' });
+  }
+
+  const sql = 'INSERT INTO appointment (doctor_id, patient_id, time) VALUES (?, ?, ?)';
+
+  db.query(sql, [doctor_id, patient_id, time], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error creating appointment' });
+    }
+
+    res.status(201).json({
+      message: 'Appointment created successfully!',
+      appointment_id: result.insertId
+    });
+  });
+};
+
+
+// My Appointments history
+exports.getAppointmentsByPatientId = (req, res) => {
+  const  patient_id  = req.patient.id;
+
+  // Validate if patient_id is provided
+  if (!patient_id) {
+    return res.status(400).json({ error: 'Patient ID is required' });
+  }
+
+  const sql = 'SELECT * FROM appointment WHERE patient_id = ?';
+
+  db.query(sql, [patient_id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'No appointments found for this patient' });
+    }
+
+    res.status(200).json({
+      message: 'Appointments retrieved successfully',
+      data: results
+    });
+  });
+};
+
+// get Doctor by Id
+exports.getDoctorById = (req, res) => {
+  const { doctor_id } = req.params;
+
+  // Validate if doctor_id is provided
+  if (!doctor_id) {
+    return res.status(400).json({ error: 'Doctor ID is required' });
+  }
+
+  const sql = 'SELECT doctor_id, name, phone, age, department, qualification, gender, specialist FROM doctor WHERE doctor_id = ?';
+
+  db.query(sql, [doctor_id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+
+    res.status(200).json({
+      message: 'Doctor retrieved successfully',
+      data: result[0]
+    });
+  });
+};
