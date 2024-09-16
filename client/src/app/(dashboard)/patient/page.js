@@ -12,9 +12,30 @@ import EmergencyContact from "@/component/Patient/EmergencyContact";
 import AllNurse from "@/component/Patient/AllNurse";
 import MyBill from "@/component/Patient/MyBill";
 import MyPreviousHistory from "@/component/Patient/MyPreviousHistory";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 function Patient() {
   const [activeComponent, setActiveComponent] = useState("");
+  const router = useRouter();
+  // Check if session exists
+  useEffect(() => {
+    const patientsession = localStorage.getItem('patient');
+  
+    if (!patientsession)
+    {
+      // Redirect to profile if session exists
+      router.push('/login');
+    }
+  }, [router]);
+
+
+
+
+
+
+
 
   return (
     <div className="h-full w-full flex space-x-2 bg-violet-500 ">

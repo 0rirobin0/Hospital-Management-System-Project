@@ -21,7 +21,7 @@ function AllDoctor() {
       </table>
 
       <div className="overflow-auto flex-grow">
-        <table className="w-full bg-white table-fixed">
+        <table className="w-full bg-white text-black table-fixed">
           <tbody>
             {doctorInfo.map((doctor, index) => (
               <tr key={index}>
