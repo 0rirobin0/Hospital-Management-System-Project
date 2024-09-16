@@ -1,145 +1,89 @@
-<div class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-  <table class="w-full text-left table-auto min-w-max">
-    <thead>
-      <tr class="border-b border-slate-300 bg-slate-50">
-        <th class="p-4 text-sm font-normal leading-none text-slate-500">
-          Product
-        </th>
-        <th class="p-4 text-sm font-normal leading-none text-slate-500">
-          Name
-        </th>
-        <th class="p-4 text-sm font-normal leading-none text-slate-500">
-          Quantity
-        </th>
-        <th class="p-4 text-sm font-normal leading-none text-slate-500">
-          Price per Item
-        </th>
-        <th class="p-4 text-sm font-normal leading-none text-slate-500">
-          Total Price
-        </th>
-        <th class="p-4 text-sm font-normal leading-none text-slate-500"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="hover:bg-slate-50">
-        <td class="p-4 border-b border-slate-200 py-5">
-          <img
-            src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
-            alt="Product 1"
-            class="w-16 h-16 object-cover rounded"
-          />
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="block font-semibold text-sm text-slate-800">
-            Beautiful Chair
-          </p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">2</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">$500</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">$1,000</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <button type="button" class="text-slate-500 hover:text-slate-700">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
+"use client";
+import { useState } from "react";
+
+export default function Dialog({ isOpen, closeDialog }) {
+  const [doctorName, setDoctorName] = useState("");
+  const [appointmentDate, setAppointmentDate] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Doctor:", doctorName);
+    console.log("Date:", appointmentDate);
+    closeDialog();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      onClick={closeDialog}
+      className="fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 backdrop-blur-sm transition-opacity duration-300"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative mx-auto w-full max-w-[24rem] rounded-lg overflow-hidden shadow-sm bg-white border-2 border-black"
+      >
+        <div className="relative flex flex-col">
+          {/* Header */}
+          <div
+            className="m-2.5 flex justify-center items-center text-white h-24 rounded-md"
+            style={{ backgroundColor: "#075E54" }}
+          >
+            <h3 className="text-2xl">Create Appointment</h3>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 ">
+            <div className="w-full">
+              <label className="block mb-2 text-sm text-slate-800">
+                Doctor name
+              </label>
+              <select
+                id="doctorName"
+                value={doctorName}
+                onChange={(e) => setDoctorName(e.target.value)}
+                className="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              >
+                <option value="" disabled>
+                  Select doctor
+                </option>
+                <option value="Dr. Robin">Dr. Robin</option>
+                <option value="Dr. Ferzin">Dr. Ferzin</option>
+                <option value="Dr. Rakib">Dr. Rakib</option>
+                <option value="Dr. Rina">Dr. Rina</option>
+              </select>
+            </div>
+
+            <div className="w-full">
+              <label className="block mb-2 text-sm text-slate-800">Date</label>
+              <input
+                type="date"
+                value={appointmentDate}
+                onChange={(e) => setAppointmentDate(e.target.value)}
+                className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-black rounded-md px-3 py-2 focus:outline-none focus:border-slate-400 shadow-sm"
               />
-            </svg>
-          </button>
-        </td>
-      </tr>
-      <tr class="hover:bg-slate-50">
-        <td class="p-4 border-b border-slate-200 py-5">
-          <img
-            src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/spacejoy-NpF_OYE301E-unsplash.jpg"
-            alt="Product 2"
-            class="w-16 h-16 object-cover rounded"
-          />
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="block font-semibold text-sm text-slate-800">Little Sofa</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">1</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">$750</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">$750</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <button type="button" class="text-slate-500 hover:text-slate-700">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </td>
-      </tr>
-      <tr class="hover:bg-slate-50">
-        <td class="p-4 border-b border-slate-200 py-5">
-          <img
-            src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/michael-oxendine-GHCVUtBECuY-unsplash.jpg"
-            alt="Product 3"
-            class="w-16 h-16 object-cover rounded"
-          />
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="block font-semibold text-sm text-slate-800">Brown Coach</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">3</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">$3,000</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <p class="text-sm text-slate-500">$9,000</p>
-        </td>
-        <td class="p-4 border-b border-slate-200 py-5">
-          <button type="button" class="text-slate-500 hover:text-slate-700">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>;
+            </div>
+
+            <div className="pt-0 flex space-x-2 mt-4">
+              <button
+                type="button"
+                onClick={closeDialog}
+                className="flex-1 border border-black font-semibold tracking-wider w-full rounded-md py-2 text-white shadow-md hover:bg-slate-700 focus:bg-slate-700"
+                style={{ backgroundColor: "#075E54" }}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="flex-1 border border-black font-semibold tracking-wider w-full rounded-md py-2 text-white shadow-md hover:bg-slate-700 focus:bg-slate-700"
+                style={{ backgroundColor: "#075E54" }}
+              >
+                Confirm
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

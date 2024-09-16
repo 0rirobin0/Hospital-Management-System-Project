@@ -1,68 +1,88 @@
-import React, { useState } from "react";
+"use client";
+import { useState } from "react";
 
-export default function CreateAppointment({ onClose }) {
-  const [doctor, setDoctor] = useState("");
+export default function Dialog({ isOpen, closeDialog }) {
+  const [doctorName, setDoctorName] = useState("");
   const [appointmentDate, setAppointmentDate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Appointment Created:", { doctor, appointmentDate });
-    onClose(); // Close the modal after submission
+    console.log("Doctor:", doctorName);
+    console.log("Date:", appointmentDate);
+    closeDialog();
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-gray-300 rounded-xl shadow-lg w-96">
-        {/* Header */}
-        <div className="bg-black text-white text-center py-3 rounded-t-lg">
-          <h2 className="text-lg font-semibold">Create Appointment</h2>
+    <div
+      onClick={closeDialog}
+      className="fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 backdrop-blur-sm transition-opacity duration-300"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative mx-auto w-full max-w-[24rem] rounded-lg overflow-hidden shadow-sm bg-white border-2 border-black"
+      >
+        <div className="relative flex flex-col">
+          {/* Header */}
+          <div
+            className="m-2.5 flex justify-center items-center text-white h-24 rounded-md"
+            style={{ backgroundColor: "#075E54" }}
+          >
+            <h3 className="text-2xl">Create Appointment</h3>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 ">
+            <div className="w-full">
+              <label className="block mb-2 text-sm text-slate-800">
+                Doctor name
+              </label>
+              <select
+                id="doctorName"
+                value={doctorName}
+                onChange={(e) => setDoctorName(e.target.value)}
+                className="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              >
+                <option value="" disabled>
+                  Select doctor
+                </option>
+                <option value="Dr. Robin">Dr. Robin</option>
+                <option value="Dr. Ferzin">Dr. Ferzin</option>
+                <option value="Dr. Rakib">Dr. Rakib</option>
+                <option value="Dr. Rina">Dr. Rina</option>
+              </select>
+            </div>
+
+            <div className="w-full">
+              <label className="block mb-2 text-sm text-slate-800">Date</label>
+              <input
+                type="date"
+                value={appointmentDate}
+                onChange={(e) => setAppointmentDate(e.target.value)}
+                className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-black rounded-md px-3 py-2 focus:outline-none focus:border-slate-400 shadow-sm"
+              />
+            </div>
+
+            <div className="pt-0 flex space-x-2 mt-4">
+              <button
+                type="button"
+                onClick={closeDialog}
+                className="flex-1 border border-black font-semibold tracking-wider w-full rounded-md py-2 text-white shadow-md hover:bg-slate-700 focus:bg-slate-700"
+                style={{ backgroundColor: "#075E54" }}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="flex-1 border border-black font-semibold tracking-wider w-full rounded-md py-2 text-white shadow-md hover:bg-slate-700 focus:bg-slate-700"
+                style={{ backgroundColor: "#075E54" }}
+              >
+                Confirm
+              </button>
+            </div>
+          </form>
         </div>
-
-        <form onSubmit={handleSubmit} className=" ">
-          <div className="p-6">
-            <level className="font-semibold">Doctor Name</level>
-            <select
-              className="w-full p-2.5 text-black bg-blue-200 border-2 border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={doctor}
-              onChange={(e) => setDoctor(e.target.value)}
-            >
-              <option  value="" disabled>
-                Select Doctor
-              </option>
-              <option value="Dr. Smith">Dr. Smith</option>
-              <option value="Dr. Johnson">Dr. Johnson</option>
-            </select>
-          </div>
-
-          <div className=" p-6">
-          <level className="font-semibold">Date</level>
-            <input
-              type="date"
-              className="w-full p-2.5 text-black bg-blue-200 border-2 border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Select Your Date"
-              value={appointmentDate}
-              onChange={(e) => setAppointmentDate(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="flex justify-around p-4 bg-gray-100 rounded-b-lg">
-            <button
-              type="button"
-              className="bg-black font-bold text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
-              onClick={onClose}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-black font-bold text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
-            >
-              Confirm
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   );

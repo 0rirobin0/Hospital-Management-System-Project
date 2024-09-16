@@ -12,30 +12,17 @@ import EmergencyContact from "@/component/Patient/EmergencyContact";
 import AllNurse from "@/component/Patient/AllNurse";
 import MyBill from "@/component/Patient/MyBill";
 import MyPreviousHistory from "@/component/Patient/MyPreviousHistory";
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function Patient() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => setIsDialogOpen(true);
+  const closeDialog = () => setIsDialogOpen(false);
+
   const [activeComponent, setActiveComponent] = useState("");
   const router = useRouter();
-  // Check if session exists
-  useEffect(() => {
-    const patientsession = localStorage.getItem('patient');
-  
-    if (!patientsession)
-    {
-      // Redirect to profile if session exists
-      router.push('/login');
-    }
-  }, [router]);
-
-
-
-
-
-
-
 
   return (
     <div className="h-full w-full flex space-x-2 bg-violet-500 ">
@@ -50,7 +37,7 @@ function Patient() {
           </div>
           <div className="bg-teal-200 flex-grow p-4 overflow-y-auto ">
             <button
-              onClick={() => setActiveComponent("createAppointment")}
+              onClick={openDialog}
               className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
             >
               <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
@@ -159,10 +146,9 @@ function Patient() {
           Don't know what to write
         </div>
 
-        <div className="flex-grow bg-teal-300 rounded-xl flex flex-col overflow-hidden">
-          {activeComponent === "createAppointment" && (
-            <CreateAppointment onClose={() => setActiveComponent("")} />
-          )}
+        <div className="flex-grow bg-teal-200 rounded-xl flex flex-col overflow-hidden">
+          <CreateAppointment isOpen={isDialogOpen} closeDialog={closeDialog} />
+
           {activeComponent === "myAppointments" && (
             <MyAppointment onClose={() => setActiveComponent("")} />
           )}
