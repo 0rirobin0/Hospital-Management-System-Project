@@ -14,10 +14,34 @@ import MyBill from "@/component/Patient/MyBill";
 import MyPreviousHistory from "@/component/Patient/MyPreviousHistory";
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from "axios";
 
 
 function Patient() {
   const [activeComponent, setActiveComponent] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [age, setAge] = useState("");
+  const [patient, setPatient] = useState( {}
+  );
+
+  useEffect(() => {
+   
+    const patientData = localStorage.getItem('patient');
+  
+    
+    if (patientData) {
+      setPatient(JSON.parse(patientData));
+ 
+    }
+  }, []);
+
+  
+    
+
+
+
+
   const router = useRouter();
   // Check if session exists
   useEffect(() => {
@@ -30,6 +54,33 @@ function Patient() {
     }
   }, [router]);
 
+  const Handlelogout = async ()=>
+  {
+    
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/logout`
+      , {
+        withCredentials: true, // Ensure cookies are sent and received
+      });
+
+      if (response.status === 200) {
+        
+        // Remove patient data from localStorage
+       await localStorage.removeItem('patient');
+
+        console.log('Logout successful:');
+
+        // Redirect to  login
+        router.push('/login');
+
+      } else {
+        setError(response.data.error || 'Logout failed');
+      }
+    } catch (error) {
+      console.error('Error in Logout:', error);
+      setError('An error occurred during logout');
+    }
+  }
 
 
 
@@ -41,7 +92,8 @@ function Patient() {
     <div className="h-full w-full flex space-x-2 bg-violet-500 ">
       <div className="w-1/5 flex flex-col h-full p-2  border-black space-y-2">
         <div className="h-auto bg-black flex justify-center items-center rounded-xl p-2 space-x-2">
-          <h1 className="text-white font-bold text-2xl ">Rakib</h1>
+          <h1 className="text-white font-bold text-2xl ">{patient.name}</h1>
+          <br/>
           <span className="text-white">(Patient)</span>
         </div>
         <div className="flex flex-col h-0 flex-grow bg-yellow-300 rounded-xl justify-between ">
@@ -147,7 +199,7 @@ function Patient() {
             </button>
           </div>
           <div className="">
-            <button className="rounded-b-xl w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
+            <button onClick={Handlelogout} className="rounded-b-xl w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
               Logout
             </button>
           </div>
@@ -156,7 +208,7 @@ function Patient() {
 
       <div className="w-4/5 h-full  py-2 pr-2 space-y-2 flex flex-col">
         <div className="flex-shrink bg-lime-400 rounded-xl p-2 text-2xl font-bold flex justify-center items-center">
-          Header
+         Phone : {patient.phone}, Age:{patient.age}
         </div>
 
         <div className="flex-grow bg-teal-300 rounded-xl flex flex-col overflow-hidden">
