@@ -7,6 +7,7 @@ import MyReport from "@/component/Patient/MyReport";
 import CabinRoomList from "@/component/Patient/CabinRoomList";
 import WardRoomList from "@/component/Patient/WardRoomList";
 import AvailableTest from "@/component/Patient/AvailableTest";
+import Ambulance from "@/component/Patient/Ambulance";
 
 function Patient() {
   const [activeComponent, setActiveComponent] = useState("");
@@ -79,6 +80,14 @@ function Patient() {
                 Available Test
               </span>
             </button>
+            <button
+              onClick={() => setActiveComponent("ambulance")}
+              className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            >
+              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              Ambulance
+              </span>
+            </button>
           </div>
           <div className="">
             <button className="rounded-b-lg w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
@@ -112,6 +121,9 @@ function Patient() {
           )}
             {activeComponent === "availableTest" && (
             <AvailableTest onClose={() => setActiveComponent("")} />
+          )}
+          {activeComponent === "ambulance" && (
+            <Ambulance onClose={() => setActiveComponent("")} />
           )}
         </div>
       </div>

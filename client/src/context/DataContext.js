@@ -693,7 +693,7 @@ export const DataProvider = ({ children }) => {
       bill: "4100 tk",
     },
   ];
-  
+
   const wardRoomList = [
     {
       name: "ward-1",
@@ -958,7 +958,109 @@ export const DataProvider = ({ children }) => {
       time: "06:00 PM",
     },
   ];
-  
+
+  const ambulanceList = [
+    {
+      driverName: "Md. Karim Rahman",
+      number: "+880 1777266489",
+      dutyTime: "06:00 PM",
+    },
+    {
+      driverName: "Ali Hossain",
+      number: "+880 1882365479",
+      dutyTime: "08:00 AM",
+    },
+    {
+      driverName: "Shahidul Islam",
+      number: "+880 1765432178",
+      dutyTime: "07:30 AM",
+    },
+    {
+      driverName: "Rahim Uddin",
+      number: "+880 1953467281",
+      dutyTime: "09:00 AM",
+    },
+    {
+      driverName: "Mahmud Khan",
+      number: "+880 1938475629",
+      dutyTime: "12:00 PM",
+    },
+    {
+      driverName: "Hasan Ahmed",
+      number: "+880 1734598273",
+      dutyTime: "02:00 PM",
+    },
+    {
+      driverName: "Farid Hossain",
+      number: "+880 1793847564",
+      dutyTime: "04:00 PM",
+    },
+    {
+      driverName: "Sohail Khan",
+      number: "+880 1612349876",
+      dutyTime: "06:30 PM",
+    },
+    {
+      driverName: "Azizur Rahman",
+      number: "+880 1993765432",
+      dutyTime: "08:30 PM",
+    },
+    {
+      driverName: "Mamun Kabir",
+      number: "+880 1718273645",
+      dutyTime: "10:00 PM",
+    },
+    {
+      driverName: "Bashir Hossain",
+      number: "+880 1647823659",
+      dutyTime: "07:00 AM",
+    },
+    {
+      driverName: "Jamal Uddin",
+      number: "+880 1758493726",
+      dutyTime: "11:00 AM",
+    },
+    {
+      driverName: "Faisal Ahmed",
+      number: "+880 1918273645",
+      dutyTime: "01:00 PM",
+    },
+    {
+      driverName: "Salman Rahman",
+      number: "+880 1612376458",
+      dutyTime: "03:00 PM",
+    },
+    {
+      driverName: "Kamal Hossain",
+      number: "+880 1778265347",
+      dutyTime: "05:00 PM",
+    },
+    {
+      driverName: "Rafiq Ali",
+      number: "+880 1789654321",
+      dutyTime: "09:30 PM",
+    },
+    {
+      driverName: "Nazim Uddin",
+      number: "+880 1963748592",
+      dutyTime: "11:00 PM",
+    },
+    {
+      driverName: "Tariq Islam",
+      number: "+880 1865473821",
+      dutyTime: "05:30 AM",
+    },
+    {
+      driverName: "Mustafizur Rahman",
+      number: "+880 1876543219",
+      dutyTime: "06:00 AM",
+    },
+    {
+      driverName: "Nasir Hossain",
+      number: "+880 1756348279",
+      dutyTime: "08:30 AM",
+    },
+  ];
 
   return (
     <DataContext.Provider
@@ -968,7 +1070,8 @@ export const DataProvider = ({ children }) => {
         myReports,
         cabinRoomList,
         wardRoomList,
-        availableTest
+        availableTest,
+        ambulanceList,
       }}
     >
       {children}
