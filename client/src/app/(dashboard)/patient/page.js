@@ -10,6 +10,8 @@ import AvailableTest from "@/component/Patient/AvailableTest";
 import Ambulance from "@/component/Patient/Ambulance";
 import EmergencyContact from "@/component/Patient/EmergencyContact";
 import AllNurse from "@/component/Patient/AllNurse";
+import MyBill from "@/component/Patient/MyBill";
+import MyPreviousHistory from "@/component/Patient/MyPreviousHistory";
 
 function Patient() {
   const [activeComponent, setActiveComponent] = useState("");
@@ -106,6 +108,22 @@ function Patient() {
                 All Nurse
               </span>
             </button>
+            <button
+              onClick={() => setActiveComponent("myBill")}
+              className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            >
+              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                My Bill
+              </span>
+            </button>
+            <button
+              onClick={() => setActiveComponent("myPreviousHistory")}
+              className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            >
+              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                My Previous History
+              </span>
+            </button>
           </div>
           <div className="">
             <button className="rounded-b-lg w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
@@ -120,7 +138,7 @@ function Patient() {
           Header
         </div>
 
-        <div className="h-5/6 bg-teal-300 rounded-xl flex flex-col">
+        <div className="h-5/6 bg-teal-300 rounded-xl flex flex-col ">
           {activeComponent === "createAppointment" && (
             <CreateAppointment onClose={() => setActiveComponent("")} />
           )}
@@ -150,6 +168,16 @@ function Patient() {
           )}
           {activeComponent === "allNurse" && (
             <AllNurse onClose={() => setActiveComponent("")} />
+          )}
+          {activeComponent === "myBill" && (
+            <div className="flex-grow overflow-auto">
+              <MyBill onClose={() => setActiveComponent("")} />
+            </div>
+          )}
+            {activeComponent === "myPreviousHistory" && (
+            <div className="flex-grow overflow-auto">
+              <MyPreviousHistory onClose={() => setActiveComponent("")} />
+            </div>
           )}
         </div>
       </div>
