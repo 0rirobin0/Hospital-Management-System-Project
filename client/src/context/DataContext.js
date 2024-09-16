@@ -856,7 +856,109 @@ export const DataProvider = ({ children }) => {
       bill: "4100 tk",
     },
   ];
-
+  const availableTest = [
+    {
+      name: "Blood test",
+      amount: "300 tk",
+      time: "07:30 PM",
+    },
+    {
+      name: "X-ray",
+      amount: "500 tk",
+      time: "08:00 AM",
+    },
+    {
+      name: "MRI Scan",
+      amount: "3000 tk",
+      time: "10:30 AM",
+    },
+    {
+      name: "CT Scan",
+      amount: "4000 tk",
+      time: "11:00 AM",
+    },
+    {
+      name: "Urine test",
+      amount: "200 tk",
+      time: "09:00 AM",
+    },
+    {
+      name: "ECG",
+      amount: "1500 tk",
+      time: "02:00 PM",
+    },
+    {
+      name: "Cholesterol test",
+      amount: "600 tk",
+      time: "03:00 PM",
+    },
+    {
+      name: "Blood Sugar test",
+      amount: "350 tk",
+      time: "08:45 AM",
+    },
+    {
+      name: "Liver Function test",
+      amount: "1200 tk",
+      time: "12:00 PM",
+    },
+    {
+      name: "Kidney Function test",
+      amount: "1000 tk",
+      time: "01:30 PM",
+    },
+    {
+      name: "HIV test",
+      amount: "1800 tk",
+      time: "04:00 PM",
+    },
+    {
+      name: "Thyroid Function test",
+      amount: "900 tk",
+      time: "10:00 AM",
+    },
+    {
+      name: "Pregnancy test",
+      amount: "300 tk",
+      time: "09:15 AM",
+    },
+    {
+      name: "Vitamin D test",
+      amount: "700 tk",
+      time: "01:00 PM",
+    },
+    {
+      name: "Complete Blood Count",
+      amount: "500 tk",
+      time: "02:45 PM",
+    },
+    {
+      name: "Urine Culture test",
+      amount: "600 tk",
+      time: "03:30 PM",
+    },
+    {
+      name: "Lipid Profile test",
+      amount: "1200 tk",
+      time: "11:30 AM",
+    },
+    {
+      name: "Hemoglobin test",
+      amount: "300 tk",
+      time: "07:00 PM",
+    },
+    {
+      name: "Allergy test",
+      amount: "2500 tk",
+      time: "05:00 PM",
+    },
+    {
+      name: "Bone Density test",
+      amount: "2000 tk",
+      time: "06:00 PM",
+    },
+  ];
+  
 
   return (
     <DataContext.Provider
@@ -865,7 +967,8 @@ export const DataProvider = ({ children }) => {
         doctorInfo,
         myReports,
         cabinRoomList,
-        wardRoomList
+        wardRoomList,
+        availableTest
       }}
     >
       {children}

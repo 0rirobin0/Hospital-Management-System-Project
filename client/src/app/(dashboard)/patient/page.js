@@ -6,7 +6,7 @@ import AllDoctor from "@/component/Patient/AllDoctor";
 import MyReport from "@/component/Patient/MyReport";
 import CabinRoomList from "@/component/Patient/CabinRoomList";
 import WardRoomList from "@/component/Patient/WardRoomList";
-
+import AvailableTest from "@/component/Patient/AvailableTest";
 
 function Patient() {
   const [activeComponent, setActiveComponent] = useState("");
@@ -71,6 +71,14 @@ function Patient() {
                 Ward Room List
               </span>
             </button>
+            <button
+              onClick={() => setActiveComponent("availableTest")}
+              className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            >
+              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Available Test
+              </span>
+            </button>
           </div>
           <div className="">
             <button className="rounded-b-lg w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
@@ -81,7 +89,7 @@ function Patient() {
       </div>
 
       <div className="w-4/5 bg-red-500 p-6 space-y-2">
-        <div className="h-1/6 bg-lime-400 rounded-xl p-2">header</div>
+        <div className="h-1/6 bg-lime-400 rounded-xl p-2 text-4xl font-bold flex justify-center items-center">Header</div>
 
         <div className="h-5/6 bg-teal-300 rounded-xl flex flex-col">
           {activeComponent === "createAppointment" && (
@@ -93,14 +101,17 @@ function Patient() {
           {activeComponent === "allDoctors" && (
             <AllDoctor onClose={() => setActiveComponent("")} />
           )}
-           {activeComponent === "myReport" && (
+          {activeComponent === "myReport" && (
             <MyReport onClose={() => setActiveComponent("")} />
           )}
-           {activeComponent === "cabinRoomList" && (
+          {activeComponent === "cabinRoomList" && (
             <CabinRoomList onClose={() => setActiveComponent("")} />
           )}
-           {activeComponent === "wardRoomList" && (
+          {activeComponent === "wardRoomList" && (
             <WardRoomList onClose={() => setActiveComponent("")} />
+          )}
+            {activeComponent === "availableTest" && (
+            <AvailableTest onClose={() => setActiveComponent("")} />
           )}
         </div>
       </div>
