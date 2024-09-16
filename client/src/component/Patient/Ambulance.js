@@ -9,9 +9,9 @@ function Ambulance() {
       <table className="w-full table-fixed">
         <thead className=" bg-gray-700 text-white sticky top-0">
           <tr>
-            <th className="px-4 py-2 text-start ">Test Name</th>
-            <th className="px-4 py-2 text-start ">Amount</th>
-            <th className="px-4 py-2 text-start ">Available Time</th>
+            <th className="px-4 py-2 text-start ">Driver Name</th>
+            <th className="px-4 py-2 text-start ">Number</th>
+            <th className="px-4 py-2 text-start "> Duty Time</th>
           </tr>
         </thead>
       </table>

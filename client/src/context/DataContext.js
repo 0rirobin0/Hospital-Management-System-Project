@@ -1061,7 +1061,129 @@ export const DataProvider = ({ children }) => {
       dutyTime: "08:30 AM",
     },
   ];
-
+  const emergencyContactList = [
+    {
+      name: "Dr. Provash Roy",
+      dept: "Urology",
+      number: "+880 1883266503",
+      dutyTime: "08:30 AM",
+    },
+    {
+      name: "Dr. Farzana Akhter",
+      dept: "Cardiology",
+      number: "+880 1718266479",
+      dutyTime: "10:00 AM",
+    },
+    {
+      name: "Dr. Shakil Ahmed",
+      dept: "Orthopedics",
+      number: "+880 1623476523",
+      dutyTime: "09:00 AM",
+    },
+    {
+      name: "Dr. Nazrul Islam",
+      dept: "Neurology",
+      number: "+880 1736471823",
+      dutyTime: "11:00 AM",
+    },
+    {
+      name: "Dr. Mahfuz Alam",
+      dept: "Dermatology",
+      number: "+880 1853467281",
+      dutyTime: "12:30 PM",
+    },
+    {
+      name: "Dr. Sabrina Hossain",
+      dept: "Pediatrics",
+      number: "+880 1783947561",
+      dutyTime: "01:00 PM",
+    },
+    {
+      name: "Dr. Tanvir Khan",
+      dept: "Gastroenterology",
+      number: "+880 1938475629",
+      dutyTime: "02:30 PM",
+    },
+    {
+      name: "Dr. Farid Ahmed",
+      dept: "Pulmonology",
+      number: "+880 1678938475",
+      dutyTime: "03:00 PM",
+    },
+    {
+      name: "Dr. Samira Khan",
+      dept: "ENT",
+      number: "+880 1765432178",
+      dutyTime: "08:00 AM",
+    },
+    {
+      name: "Dr. Kamal Uddin",
+      dept: "Nephrology",
+      number: "+880 1645379826",
+      dutyTime: "04:00 PM",
+    },
+    {
+      name: "Dr. Rubel Sarker",
+      dept: "Oncology",
+      number: "+880 1912376458",
+      dutyTime: "09:30 AM",
+    },
+    {
+      name: "Dr. Monira Begum",
+      dept: "Gynecology",
+      number: "+880 1857493629",
+      dutyTime: "02:00 PM",
+    },
+    {
+      name: "Dr. Taufiq Rahman",
+      dept: "Ophthalmology",
+      number: "+880 1965847321",
+      dutyTime: "10:30 AM",
+    },
+    {
+      name: "Dr. Aminul Islam",
+      dept: "Cardiology",
+      number: "+880 1987654321",
+      dutyTime: "03:30 PM",
+    },
+    {
+      name: "Dr. Jamil Hassan",
+      dept: "Neurology",
+      number: "+880 1648273659",
+      dutyTime: "04:30 PM",
+    },
+    {
+      name: "Dr. Sharmin Akhter",
+      dept: "Pediatrics",
+      number: "+880 1749827364",
+      dutyTime: "06:00 PM",
+    },
+    {
+      name: "Dr. Omar Faruq",
+      dept: "Dermatology",
+      number: "+880 1687425369",
+      dutyTime: "07:00 PM",
+    },
+    {
+      name: "Dr. Hasan Mahmud",
+      dept: "Urology",
+      number: "+880 1789374628",
+      dutyTime: "08:00 PM",
+    },
+    {
+      name: "Dr. Nusrat Jahan",
+      dept: "Orthopedics",
+      number: "+880 1674382719",
+      dutyTime: "09:00 PM",
+    },
+    {
+      name: "Dr. Fahim Rahman",
+      dept: "Gastroenterology",
+      number: "+880 1938471628",
+      dutyTime: "10:00 PM",
+    },
+  ];
+  
   return (
     <DataContext.Provider
       value={{
@@ -1072,6 +1194,7 @@ export const DataProvider = ({ children }) => {
         wardRoomList,
         availableTest,
         ambulanceList,
+        emergencyContactList,
       }}
     >
       {children}
