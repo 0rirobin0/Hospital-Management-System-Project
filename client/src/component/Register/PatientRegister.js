@@ -22,7 +22,7 @@ export default function PatientRegister() {
   };
 
   return (
-    <div className="bg-red-500 border-4 border-red-800">
+    <div className="text-white ">
       <form onSubmit={handleSubmit}>
         <div className="mb-2">
           <label htmlFor="name" className="block text-gray-700">
@@ -31,7 +31,7 @@ export default function PatientRegister() {
           <input
             type="text"
             id="name"
-            className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:border-green-500"
+            className="text-black w-full mt-1 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
@@ -45,7 +45,7 @@ export default function PatientRegister() {
           <input
             type="text"
             id="phone"
-            className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:border-green-500"
+            className="text-black w-full mt-1 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="Enter your phone number"
@@ -60,7 +60,7 @@ export default function PatientRegister() {
             <input
               type="number"
               id="age"
-              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:border-green-500"
+              className="text-black w-full mt-1 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
               value={age}
               onChange={(e) => setAge(e.target.value)}
               placeholder="Enter your age"
@@ -73,7 +73,7 @@ export default function PatientRegister() {
             </label>
             <select
               id="gender"
-              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:border-green-500"
+              className="text-black w-full mt-1 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
@@ -92,7 +92,7 @@ export default function PatientRegister() {
           <input
             type="password"
             id="password"
-            className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:border-green-500"
+            className="text-black w-full mt-1 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
@@ -101,16 +101,16 @@ export default function PatientRegister() {
 
         <button
           type="submit"
-          className="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition-colors"
+          className="font-bold w-full bg-black text-white p-2 rounded-lg hover:bg-white hover:text-black transition-colors tracking-wider"
         >
           Register as Patient
         </button>
-        <div className="text-sm text-black text-center mt-5">
+        <div className="text-sm text-black text-center my-4 py-2">
           <p>
             Already have an account?{" "}
             <Link
               href="/login"
-              className="text-white font-semibold hover:underline"
+              className="text-white font-semibold hover:underline "
               onClick={() => router.push("/login")}
             >
               Sign in

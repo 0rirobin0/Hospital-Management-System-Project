@@ -60,26 +60,26 @@ export default function PatientLogin() {
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4">
       <div className="mb-4">
-        <label htmlFor="patient-phone" className="block text-gray-700">
-          Phone
+        <label htmlFor="patient-username" className="block text-white tracking-wide">
+          Patient phone
         </label>
         <input
           type="text"
           id="patient-phone"
-          className="w-full mt-2 p-2 border rounded-lg focus:outline-none focus:border-green-500"
+          className="w-full mt-2 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
           placeholder="Enter your phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="patient-password" className="block text-gray-700">
+        <label htmlFor="patient-password" className="block text-white tracking-wide">
           Password
         </label>
         <input
           type="password"
           id="patient-password"
-          className="w-full mt-2 p-2 border rounded-lg focus:outline-none focus:border-green-500"
+          className="w-full mt-2 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -87,14 +87,13 @@ export default function PatientLogin() {
       </div>
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full"
+        className="font-bold w-full bg-black text-white p-2 rounded-lg hover:bg-white hover:text-black transition-colors tracking-wider"
       >
         Sign in
       </button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-      <div className="text-sm text-black text-center mt-5">
+      <div className="text-sm text-black text-center my-4 py-2">
         <p>
-          Don't have an account?
+          Don't have an account?{" "}
           <Link
             href="/register"
             className="text-blue-500 font-semibold hover:underline ml-1"
