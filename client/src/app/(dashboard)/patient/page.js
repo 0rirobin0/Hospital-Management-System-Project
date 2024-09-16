@@ -27,7 +27,7 @@ function Patient() {
           <div className="flex justify-center underline items-center h-auto font-bold bg-black text-white rounded-t-xl px-4 py-2">
             Service name
           </div>
-          <div className="bg-pink-400 flex-grow p-4 overflow-y-auto ">
+          <div className="bg-teal-200 flex-grow p-4 overflow-y-auto ">
             <button
               onClick={() => setActiveComponent("createAppointment")}
               className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
@@ -135,7 +135,7 @@ function Patient() {
 
       <div className="w-4/5 h-full  py-2 pr-2 space-y-2 flex flex-col">
         <div className="flex-shrink bg-lime-400 rounded-xl p-2 text-2xl font-bold flex justify-center items-center">
-          Header
+          Don't know what to write
         </div>
 
         <div className="flex-grow bg-teal-300 rounded-xl flex flex-col overflow-hidden">
