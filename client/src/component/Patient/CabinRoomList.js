@@ -1,7 +1,7 @@
 import React from "react";
 import { useDataContext } from "@/context/DataContext";
 
-function MyAppointment() {
+function CabinRoomList() {
   const { cabinRoomList } = useDataContext();
 
   return (
@@ -9,7 +9,7 @@ function MyAppointment() {
       <table className="w-full table-fixed">
         <thead className=" bg-gray-700 text-white sticky top-0">
           <tr>
-            <th className="px-4 py-2 text-start ">Name</th>
+            <th className="px-4 py-2 text-start ">Cabin Name</th>
             <th className="px-3 py-2 text-start ">Room number</th>
             <th className="px-3 py-2 text-start ">Assigned Nurse</th>
             <th className="px-3 py-2 text-start ">Supervising Doctor</th>
@@ -51,4 +51,4 @@ function MyAppointment() {
   );
 }
 
-export default MyAppointment;
+export default CabinRoomList;

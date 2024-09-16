@@ -5,6 +5,8 @@ import MyAppointment from "@/component/Patient/MyAppointment";
 import AllDoctor from "@/component/Patient/AllDoctor";
 import MyReport from "@/component/Patient/MyReport";
 import CabinRoomList from "@/component/Patient/CabinRoomList";
+import WardRoomList from "@/component/Patient/WardRoomList";
+
 
 function Patient() {
   const [activeComponent, setActiveComponent] = useState("");
@@ -61,6 +63,14 @@ function Patient() {
                 Cabin Room List
               </span>
             </button>
+            <button
+              onClick={() => setActiveComponent("wardRoomList")}
+              className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            >
+              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Ward Room List
+              </span>
+            </button>
           </div>
           <div className="">
             <button className="rounded-b-lg w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
@@ -88,6 +98,9 @@ function Patient() {
           )}
            {activeComponent === "cabinRoomList" && (
             <CabinRoomList onClose={() => setActiveComponent("")} />
+          )}
+           {activeComponent === "wardRoomList" && (
+            <WardRoomList onClose={() => setActiveComponent("")} />
           )}
         </div>
       </div>

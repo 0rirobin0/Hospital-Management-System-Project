@@ -1,7 +1,7 @@
 import React from "react";
 import { useDataContext } from "@/context/DataContext";
 
-function MyAppointment() {
+function AllDoctor() {
   const { doctorInfo } = useDataContext();
 
   return (
@@ -55,4 +55,4 @@ function MyAppointment() {
   );
 }
 
-export default MyAppointment;
+export default AllDoctor;
