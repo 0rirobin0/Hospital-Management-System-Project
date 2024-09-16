@@ -7,7 +7,7 @@ const {isPatient} =  require('../auth/auth')
 patientsRouter.post('/register', register);
 
 // Login Route
-patientsRouter.get('/login', login);
+patientsRouter.post('/login', login);
 
 // Logout Route
 patientsRouter.get('/logout',isPatient, logout);

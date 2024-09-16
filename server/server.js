@@ -9,12 +9,12 @@ const doctorRouter = require('./router/DoctorRouter');
 const app = express();
 const PORT = 5000;
 
-const allowedOrigin = process.env.FRONTEND_URL; // Replace with your frontend URL
+
 
 
 // CORS POLICY
 const corsOptions ={
-    origin:`${allowedOrigin}`, 
+    origin:'http://localhost:3000', 
     methods:['GET','POST','PUT','DELETE'],
     credentials:true,            
     optionSuccessStatus:200,

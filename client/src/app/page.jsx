@@ -14,7 +14,18 @@ function page() {
       // Redirect to profile if session exists
       router.push('/login');
     }
-  }, [router]);
+    else if (patientsession && !doctorsession)
+      {
+        // Redirect to profile if session exists
+        router.push('/patient');
+      }
+ 
+   else if (!patientsession && doctorsession)
+    {
+      // Redirect to profile if session exists
+      router.push('/doctor');
+    }
+}, [router]);
 
   return (
     <div className="flex text-center  h-screen bg-sky-400">
