@@ -18,13 +18,13 @@ function Patient() {
 
   return (
     <div className="h-full w-full flex space-x-2 bg-violet-500 ">
-      <div className="w-1/5 flex flex-col h-full bg-green-300 p-2 border-2 border-black space-y-2">
-        <div className="h-auto bg-black flex justify-center items-center rounded-xl p-4 space-x-2">
+      <div className="w-1/5 flex flex-col h-full p-2  border-black space-y-2">
+        <div className="h-auto bg-black flex justify-center items-center rounded-xl p-2 space-x-2">
           <h1 className="text-white font-bold text-2xl ">Rakib</h1>
           <span className="text-white">(Patient)</span>
         </div>
         <div className="flex flex-col h-0 flex-grow bg-yellow-300 rounded-xl justify-between ">
-          <div className="flex justify-center underline items-center h-auto font-bold bg-sky-400 rounded-t-lg px-4 py-2">
+          <div className="flex justify-center underline items-center h-auto font-bold bg-black text-white rounded-t-xl px-4 py-2">
             Service name
           </div>
           <div className="bg-pink-400 flex-grow p-4 overflow-y-auto ">
@@ -126,19 +126,19 @@ function Patient() {
             </button>
           </div>
           <div className="">
-            <button className="rounded-b-lg w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
+            <button className="rounded-b-xl w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
               Logout
             </button>
           </div>
         </div>
       </div>
 
-      <div className="w-4/5 bg-red-500 p-6 space-y-2">
-        <div className="h-1/6 bg-lime-400 rounded-xl p-2 text-4xl font-bold flex justify-center items-center">
+      <div className="w-4/5 h-full  py-2 pr-2 space-y-2 flex flex-col">
+        <div className="flex-shrink bg-lime-400 rounded-xl p-2 text-2xl font-bold flex justify-center items-center">
           Header
         </div>
 
-        <div className="h-5/6 bg-teal-300 rounded-xl flex flex-col ">
+        <div className="flex-grow bg-teal-300 rounded-xl flex flex-col overflow-hidden">
           {activeComponent === "createAppointment" && (
             <CreateAppointment onClose={() => setActiveComponent("")} />
           )}
@@ -174,7 +174,7 @@ function Patient() {
               <MyBill onClose={() => setActiveComponent("")} />
             </div>
           )}
-            {activeComponent === "myPreviousHistory" && (
+          {activeComponent === "myPreviousHistory" && (
             <div className="flex-grow overflow-auto">
               <MyPreviousHistory onClose={() => setActiveComponent("")} />
             </div>
