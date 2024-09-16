@@ -1,5 +1,5 @@
 const express = require('express');
-const { register, login, logout, getAllDoctors, createAppointment, getAppointmentsByPatientId, getDoctorById} = require('../controller/patientsController');
+const { register, login, logout, getAllDoctors, createAppointment, getAppointmentsByPatientId, getDoctorById, getTestReportByPatientId, getAllCabinRoom, getAmbulance, getAllWard, getAvailableTest, getEmergencyContact, getAllNurse, getPreviousHistoryByPatientId} = require('../controller/patientsController');
 const patientsRouter = express.Router();
 const {isPatient} =  require('../auth/auth')
 
@@ -20,6 +20,24 @@ patientsRouter.get('/myappointment',isPatient,getAppointmentsByPatientId );
  patientsRouter.get('/alldoctor',isPatient, getAllDoctors);
 //  get Doctor By Id
 patientsRouter.get('/getdoctor/:doctor_id',isPatient, getDoctorById);
+//get All report by patient id
+patientsRouter.get('/mytestreport',isPatient,getTestReportByPatientId );
+//get my bill by patient id
+patientsRouter.get('/mybill',isPatient,getTestReportByPatientId );
+//get all cabin room 
+patientsRouter.get('/allcabin',isPatient,getAllCabinRoom );
+//get all ambulance
+patientsRouter.get('/allambulance',isPatient,getAmbulance );
+//get all ward
+patientsRouter.get('/allward',isPatient,getAllWard );
+//get all available test
+patientsRouter.get('/availabletest',isPatient,getAvailableTest );
+//get all emergency contact
+patientsRouter.get('/emergencycontact',isPatient,getEmergencyContact );
+//get all emergency contact
+patientsRouter.get('/allnurse',isPatient,getAllNurse );
+//get my previous History 
+patientsRouter.get('/myprevioushistory',isPatient,getPreviousHistoryByPatientId );
 
 
 

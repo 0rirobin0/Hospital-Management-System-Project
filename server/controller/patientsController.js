@@ -179,3 +179,187 @@ exports.getDoctorById = (req, res) => {
     });
   });
 };
+
+// get My test report by patient Id
+
+exports.getTestReportByPatientId = (req, res) => {
+  const  patient_id  = req.patient.id;
+
+  // Validate if patient_id is provided
+  if (!patient_id) {
+    return res.status(400).json({ error: 'Patient ID is required' });
+  }
+
+  const sql = 'SELECT * FROM testreport WHERE patient_id = ?';
+
+  db.query(sql, [patient_id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'No testreport found for this patient' });
+    }
+
+    res.status(200).json({
+      message: 'testreport retrieved successfully',
+      data: results
+    });
+  });
+};
+
+
+// get my bill bt patient Id
+
+exports.getTestReportByPatientId = (req, res) => {
+  const  patient_id  = req.patient.id;
+
+  // Validate if patient_id is provided
+  if (!patient_id) {
+    return res.status(400).json({ error: 'Patient ID is required' });
+  }
+
+  const sql = 'SELECT * FROM bill WHERE patient_id = ?';
+
+  db.query(sql, [patient_id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'No bill found for this patient' });
+    }
+
+    res.status(200).json({
+      message: 'bill retrieved successfully',
+      data: results
+    });
+  });
+};
+
+
+// get all Cabin Room
+exports.getAllCabinRoom = (req, res) => {
+  const sql = 'SELECT * FROM cabin_room';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'Cabin Room retrieved successfully',
+      data: results
+    });
+  });
+};
+// get all ambulance Room
+exports.getAmbulance = (req, res) => {
+  const sql = 'SELECT * FROM ambulance';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'Ambulance retrieved successfully',
+      data: results
+    });
+  });
+};
+
+// get all ambulance Room
+exports.getAllWard = (req, res) => {
+  const sql = 'SELECT * FROM general_ward';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'General Ward retrieved successfully',
+      data: results
+    });
+  });
+};
+
+
+// get all available test 
+exports.getAvailableTest = (req, res) => {
+  const sql = 'SELECT * FROM availabletest';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'available test retrieved successfully',
+      data: results
+    });
+  });
+};
+
+// get all emergency_contact
+exports.getEmergencyContact = (req, res) => {
+  const sql = 'SELECT * FROM emergency_contact';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'emergency contact retrieved successfully',
+      data: results
+    });
+  });
+};
+
+// get all Nurse
+exports.getAllNurse = (req, res) => {
+  const sql = 'SELECT * FROM nurse';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'nurse retrieved successfully',
+      data: results
+    });
+  });
+};
+
+
+// get my Previous History by patient Id
+
+exports.getPreviousHistoryByPatientId = (req, res) => {
+  const  patient_id  = req.patient.id;
+
+  // Validate if patient_id is provided
+  if (!patient_id) {
+    return res.status(400).json({ error: 'Patient ID is required' });
+  }
+
+  const sql = 'SELECT * FROM previous_history WHERE patient_id = ?';
+
+  db.query(sql, [patient_id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'No previous_history found for this patient' });
+    }
+
+    res.status(200).json({
+      message: 'previous_history retrieved successfully',
+      data: results
+    });
+  });
+};
+

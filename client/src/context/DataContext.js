@@ -6,6 +6,14 @@ const DataContext = createContext();
 
 // Create a provider component
 export const DataProvider = ({ children }) => {
+
+  const [name, setName] = useState('');
+  
+
+
+
+
+
   const appointments = [
     {
       name: "Ques1daD",
