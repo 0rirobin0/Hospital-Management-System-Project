@@ -1,33 +1,79 @@
-"use client";
-import { useState } from "react";
-import Dialog from "@/component/Patient/test";
+"use client"
+import React, { useState } from 'react';
 
-export default function TestPage() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+const CreateAppointmentForm = ({ onCancel, onConfirm }) => {
+  const [selectedDoctor, setSelectedDoctor] = useState('');
+  const [appointmentDate, setAppointmentDate] = useState('');
 
-  const openDialog = () => setIsDialogOpen(true);
-  const closeDialog = () => setIsDialogOpen(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle appointment creation logic
+    console.log({ selectedDoctor, appointmentDate });
+    onConfirm({ selectedDoctor, appointmentDate });
+  };
 
   return (
-    <div>
-      <button
-        onClick={openDialog}
-        className="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
-      >
-        Open Dialog
-      </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
+        <h2 className="text-2xl font-bold text-center mb-6">Create Appointment</h2>
+        <form onSubmit={handleSubmit}>
+          {/* Doctor Name Dropdown */}
+          <div className="mb-4">
+            <label htmlFor="doctor" className="block text-gray-700">
+              Doctor Name
+            </label>
+            <select
+              id="doctor"
+              value={selectedDoctor}
+              onChange={(e) => setSelectedDoctor(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              required
+            >
+              <option value="" disabled>Select a Doctor</option>
+              {/* Sample doctor names */}
+              <option value="Dr. Alice Johnson">Dr. Alice Johnson</option>
+              <option value="Dr. Bob Smith">Dr. Bob Smith</option>
+              <option value="Dr. Carol Williams">Dr. Carol Williams</option>
+              <option value="Dr. David Brown">Dr. David Brown</option>
+              <option value="Dr. Eva Davis">Dr. Eva Davis</option>
+            </select>
+          </div>
 
-      <Dialog isOpen={isDialogOpen} closeDialog={closeDialog} />
+          {/* Date Input */}
+          <div className="mb-4">
+            <label htmlFor="date" className="block text-gray-700">
+              Appointment Date
+            </label>
+            <input
+              type="date"
+              id="date"
+              value={appointmentDate}
+              onChange={(e) => setAppointmentDate(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              required
+            />
+          </div>
+
+          {/* Buttons */}
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={onCancel}
+              className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+            >
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
-}
-  // Check if session exists
-  // useEffect(() => {
-  //   const patientsession = localStorage.getItem('patient');
+};
 
-  //   if (!patientsession)
-  //   {
-  //     // Redirect to profile if session exists
-  //     router.push('/login');
-  //   }
-  // }, [router]);
+export default CreateAppointmentForm;

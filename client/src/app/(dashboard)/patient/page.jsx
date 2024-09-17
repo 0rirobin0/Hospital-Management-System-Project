@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import CreateAppointment from "@/component/Patient/CreateAppoinment";
+import CreateAppointment from "@/component/Patient/CreateAppoinment2";
 import MyAppointment from "@/component/Patient/MyAppointment";
 import AllDoctor from "@/component/Patient/AllDoctor";
 import MyReport from "@/component/Patient/MyReport";
@@ -12,84 +12,72 @@ import EmergencyContact from "@/component/Patient/EmergencyContact";
 import AllNurse from "@/component/Patient/AllNurse";
 import MyBill from "@/component/Patient/MyBill";
 import MyPreviousHistory from "@/component/Patient/MyPreviousHistory";
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
-
 function Patient() {
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // const openDialog = () => setIsDialogOpen(true);
+  // const closeDialog = () => setIsDialogOpen(false);
+
   const [activeComponent, setActiveComponent] = useState("");
   const [patient, setPatient] = useState({});
-  const [Error, setError] = useState('');
-
-
-
+  const [Error, setError] = useState("");
 
   useEffect(() => {
-   
-    const patientData = localStorage.getItem('patient');
-  
-    
+    const patientData = localStorage.getItem("patient");
+
     if (patientData) {
       setPatient(JSON.parse(patientData));
- 
     }
   }, []);
 
-
   const router = useRouter();
   // Check if session exists
-  useEffect(() => {
-    const patientsession = localStorage.getItem('patient');
-  
-    if (!patientsession)
-    {
-      // Redirect to profile if session exists
-      router.push('/login');
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const patientsession = localStorage.getItem('patient');
 
+  //   if (!patientsession)
+  //   {
+  //     // Redirect to profile if session exists
+  //     router.push('/login');
+  //   }
+  // }, [router]);
 
-  const Handlelogout = async ()=>
-  {
-    
+  const Handlelogout = async () => {
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/logout`
-      , {
-        withCredentials: true, // Ensure cookies are sent and received
-      });
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/logout`,
+        {
+          withCredentials: true, // Ensure cookies are sent and received
+        }
+      );
 
       if (response.status === 200) {
-        
         // Remove patient data from localStorage
-        localStorage.removeItem('patient');
+        localStorage.removeItem("patient");
 
-        console.log('Logout successful:');
+        console.log("Logout successful:");
 
         // Redirect to  login
-        router.push('/login');
-
+        router.push("/login");
       } else {
-        setError(response.data.error || 'Logout failed');
+        setError(response.data.error || "Logout failed");
       }
     } catch (error) {
-      console.error('Error in Logout:', error);
-      setError('An error occurred during logout');
+      console.error("Error in Logout:", error);
+      setError("An error occurred during logout");
     }
-  }
-
-
-
-
-
-
+  };
 
   return (
     <div className="h-full w-full flex space-x-2 bg-violet-500 ">
       <div className="w-1/5 flex flex-col h-full p-2  border-black space-y-2">
         <div className="h-auto bg-black flex justify-center items-center rounded-xl p-2 space-x-2">
           <h1 className="text-white font-bold text-2xl ">{patient.name}</h1>
-          <br/>
+          <br />
           <span className="text-white">(Patient)</span>
         </div>
         <div className="flex flex-col h-0 flex-grow bg-yellow-300 rounded-xl justify-between ">
@@ -98,7 +86,7 @@ function Patient() {
           </div>
           <div className="bg-pink-400 flex-grow p-4 overflow-y-auto ">
             <button
-            
+              onClick={() => setActiveComponent("createAppointment")}
               className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
             >
               <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
@@ -195,16 +183,19 @@ function Patient() {
             </button>
           </div>
           <div className="">
-            <button onClick={Handlelogout} className="rounded-b-xl w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
+            <button
+              onClick={Handlelogout}
+              className="rounded-b-xl w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black"
+            >
               Logout
-            </button> 
+            </button>
           </div>
         </div>
       </div>
 
       <div className="w-4/5 h-full  py-2 pr-2 space-y-2 flex flex-col">
         <div className="flex-shrink bg-lime-400 rounded-xl p-2 text-2xl font-bold flex justify-center items-center">
-         Phone : 0{patient.phone}, Age:{patient.age}years
+          Phone : 0{patient.phone}, Age:{patient.age}years
         </div>
 
         <div className="flex-grow bg-teal-300 rounded-xl flex flex-col overflow-hidden">
