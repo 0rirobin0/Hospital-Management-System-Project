@@ -63,7 +63,7 @@ exports.login = (req, res) => {
       res.cookie('token', token, {
         httpOnly: true, // Prevent client-side access to the cookie
         secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-        maxAge: 3600000, // 1 hour
+       
       });
   
       res.status(200).json({ message: 'Login successful' ,
@@ -102,18 +102,18 @@ exports.getAllDoctors = (req, res) => {
 
 // make a appointment
 exports.createAppointment = (req, res) => {
-  const { doctor_id, time } = req.body;
+  const { doctor_id, time,date,description } = req.body;
  const patient_id = req.patient.id;
 
  
   // Validate input
-  if (!doctor_id || !patient_id || !time) {
-    return res.status(400).json({ error: 'Doctor ID, Patient ID, and time are required' });
+  if (!doctor_id || !patient_id || !time ||!date||!description) {
+    return res.status(400).json({ error: 'Doctor ID, Patient ID,date,description and time are required' });
   }
 
-  const sql = 'INSERT INTO appointment (doctor_id, patient_id, time) VALUES (?, ?, ?)';
+  const sql = 'INSERT INTO appointment (doctor_id, patient_id, time, date, description) VALUES (?,?,?,?,?)';
 
-  db.query(sql, [doctor_id, patient_id, time], (err, result) => {
+  db.query(sql, [doctor_id, patient_id, time,date,description], (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Error creating appointment' });
     }

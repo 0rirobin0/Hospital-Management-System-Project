@@ -19,7 +19,7 @@ patientsRouter.get('/myappointment',isPatient,getAppointmentsByPatientId );
 // get all doctor
  patientsRouter.get('/alldoctor',isPatient, getAllDoctors);
 //  get Doctor By Id
-patientsRouter.get('/getdoctor/:doctor_id',isPatient, getDoctorById);
+patientsRouter.get('/getdoctor/:doctor_id', getDoctorById);
 //get All report by patient id
 patientsRouter.get('/mytestreport',isPatient,getTestReportByPatientId );
 //get my bill by patient id

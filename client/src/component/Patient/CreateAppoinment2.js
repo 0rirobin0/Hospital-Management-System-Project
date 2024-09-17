@@ -1,23 +1,65 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useContext} from "react";
 import { GiConfirmed } from "react-icons/gi";
+import { useDataContext } from "@/context/DataContext";
+import axios from "axios";
+
 
 const CreateAppointmentForm = () => {
-  const [selectedDoctor, setSelectedDoctor] = useState("");
-  const [appointmentDate, setAppointmentDate] = useState("");
-  const [appointmentTime, setAppointmentTime] = useState("");
+  const [doctor_id, setdoctor_id] = useState("");
+  const [date, setdate] = useState("");
+  const [time, settime] = useState("");
   const [description, setDescription] = useState("");
+const { doctorInfo } = useDataContext(useDataContext);
+ 
 
-  const handleSubmit = (e) => {
+
+
+const handleSubmit = async(e) => {
     e.preventDefault();
-    // Handle appointment creation logic
+   
+      try { 
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/createappointment`,
+          {
+           doctor_id,
+           date,
+           time,
+           description
+          } ,
+          {
+          withCredentials: true, // Ensure cookies are sent and received
+        });
+        
+        if (response.status === 201) {
+         console.log('Appointment Created');
+         alert("Apointment Created Successfully")
+         
+
+        } else {
+          console.error('Failed to creation appointments');
+          
+        }
+
+      } catch (error) {
+        console.error('Error creation appointment data:', error);
+       
+      }
+
+   
+
+
+
+
+
     console.log({
-      selectedDoctor,
-      appointmentDate,
-      appointmentTime,
+      doctor_id,
+      date,
+      time,
       description,
     });
   };
+
+
 
   return (
     <div className=" flex items-center justify-center bg-gray-100 h-full">
@@ -31,21 +73,22 @@ const CreateAppointmentForm = () => {
               Doctor Name
             </label>
             <select
-              id="doctor"
-              value={selectedDoctor}
-              onChange={(e) => setSelectedDoctor(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
-              required
-            >
-              <option value="" disabled>
-                Select a Doctor
-              </option>
-              <option value="Dr. Alice Johnson">Dr. Alice Johnson</option>
-              <option value="Dr. Bob Smith">Dr. Bob Smith</option>
-              <option value="Dr. Carol Williams">Dr. Carol Williams</option>
-              <option value="Dr. David Brown">Dr. David Brown</option>
-              <option value="Dr. Eva Davis">Dr. Eva Davis</option>
-            </select>
+  id="doctor"
+  value={doctor_id}
+  onChange={(e) => setdoctor_id(e.target.value)}
+  className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+  required
+>
+  <option value="" disabled>
+    Select a Doctor
+  </option>
+  {doctorInfo.map((doctor, index) => (
+    <option key={index} value={doctor.doctor_id}>
+      {doctor.name}
+    </option>
+  ))}
+</select>
+
           </div>
 
           {/* Date Input */}
@@ -56,8 +99,8 @@ const CreateAppointmentForm = () => {
             <input
               type="date"
               id="date"
-              value={appointmentDate}
-              onChange={(e) => setAppointmentDate(e.target.value)}
+              value={date}
+              onChange={(e) => setdate(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
               required
             />
@@ -70,8 +113,8 @@ const CreateAppointmentForm = () => {
             <input
               type="time"
               id="time"
-              value={appointmentTime}
-              onChange={(e) => setAppointmentTime(e.target.value)}
+              value={time}
+              onChange={(e) => settime(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
               required
             />

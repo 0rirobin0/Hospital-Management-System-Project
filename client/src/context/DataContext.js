@@ -1,5 +1,6 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext,useEffect, useState } from "react";
+import axios from "axios";
 
 // Create the context
 const DataContext = createContext();
@@ -8,359 +9,59 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
 
   const [name, setName] = useState('');
+  const [doctorInfo, setDoctorInfo] = useState([]);
+  const [appointments, setAppointments] = useState([]);
+
+  // Fetching Doctor Info
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/alldoctor`, {
+          withCredentials: true, // Ensure cookies are sent and received
+        });
+        
+        if (response.status === 200) {
+          setDoctorInfo(response.data.data); // Assuming response.data contains the doctor info array
+        } else {
+          console.error('Failed to fetch doctors');
+        }
+      } catch (error) {
+        console.error('Error fetching doctor data:', error);
+      }
+    };
+
+    fetchDoctors(); // Call the function inside useEffect
+  }, []);
+
+
+  // fetching my Appointments
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/myappointment`, {
+          withCredentials: true, // Ensure cookies are sent and received
+        });
+        
+        if (response.status === 200) {
+          setAppointments(response.data.data); // Assuming response.data contains the appointment info array
+        } else {
+          console.error('Failed to fetch appointments');
+        }
+      } catch (error) {
+        console.error('Error fetching appointment data:', error);
+       
+      }
+    };
+
+    fetchAppointments(); // Call the function inside useEffect
+  }, []);
+  // console.log(appointments);
   
 
 
 
+ 
 
-
-  const appointments = [
-    {
-      name: "Ques1daD",
-      owner: "md. rakibul kabir",
-      year: 2024,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2dscs",
-      owner: "siam ahmed",
-      year: 2024,
-      type: "Term Test",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2SCSCZSC",
-      owner: "arka das",
-      year: 2024,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2xvzcvzSnfgjhdtyaesegsegsdgstgw4twetw",
-      owner: "robin ahmed",
-      year: 2023,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2xzvzxvz",
-      owner: "mahfuzul hasan siam",
-      year: 2023,
-      type: "Term Test",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2vxfgsdvx",
-      owner: "rakib",
-      year: 2023,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2cbxcbxcbxc",
-      owner: "rakib",
-      year: 2022,
-      type: "Term Test",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2dgsdgzdzdgzdgzdgzd",
-      owner: "rakib",
-      year: 2022,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2afzsdfzdfzdf",
-      owner: "rakib",
-      year: 2021,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2zdgzdgzdgvzd",
-      owner: "rakib",
-      year: 2021,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2zdvzxdvzxdcvzxcv",
-      owner: "rakib",
-      year: 2021,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2zvxdvbxfcbx",
-      owner: "rakib",
-      year: 2020,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2bxxfvxbvxcbvxc",
-      owner: "rakib",
-      year: 2020,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2xxfbcnbcgncg",
-      owner: "rakib",
-      year: 2020,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2019,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2019,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2019,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2019,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2019,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2019,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2019,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2018,
-      type: "Semester",
-      mark: "Mark",
-    },
-    {
-      name: "Ques2",
-      owner: "rakib",
-      year: 2018,
-      type: "Semester",
-      mark: "Mark",
-    },
-  ];
-
-
-  const doctorInfo = [
-    {
-      name: "Rakib",
-      dept: "Cardiology",
-      qualification: "MBBS",
-      age: "34",
-      gender: "Male",
-      specialist: "Heart",
-      number: "+880 1881665711",
-    },
-    {
-      name: "Sadia",
-      dept: "Neurology",
-      qualification: "MD",
-      age: "42",
-      gender: "Female",
-      specialist: "Brain",
-      number: "+880 1881665722",
-    },
-    {
-      name: "Arif",
-      dept: "Orthopedics",
-      qualification: "MBBS, MS",
-      age: "38",
-      gender: "Male",
-      specialist: "Bones",
-      number: "+880 1881665733",
-    },
-    {
-      name: "Maya",
-      dept: "Dermatology",
-      qualification: "MBBS",
-      age: "29",
-      gender: "Female",
-      specialist: "Skin",
-      number: "+880 1881665744",
-    },
-    {
-      name: "Nabil",
-      dept: "Pediatrics",
-      qualification: "MBBS, MD",
-      age: "35",
-      gender: "Male",
-      specialist: "Child Care",
-      number: "+880 1881665755",
-    },
-    {
-      name: "Ritu",
-      dept: "Gynecology",
-      qualification: "MBBS, MD",
-      age: "39",
-      gender: "Female",
-      specialist: "Pregnancy",
-      number: "+880 1881665766",
-    },
-    {
-      name: "Farhan",
-      dept: "Urology",
-      qualification: "MBBS, MS",
-      age: "45",
-      gender: "Male",
-      specialist: "Kidney",
-      number: "+880 1881665777",
-    },
-    {
-      name: "Ayesha",
-      dept: "Ophthalmology",
-      qualification: "MBBS",
-      age: "31",
-      gender: "Female",
-      specialist: "Eye",
-      number: "+880 1881665788",
-    },
-    {
-      name: "Tariq",
-      dept: "Endocrinology",
-      qualification: "MD",
-      age: "47",
-      gender: "Male",
-      specialist: "Diabetes",
-      number: "+880 1881665799",
-    },
-    {
-      name: "Nasrin",
-      dept: "Gastroenterology",
-      qualification: "MBBS, MD",
-      age: "37",
-      gender: "Female",
-      specialist: "Digestive System",
-      number: "+880 1881665800",
-    },
-    {
-      name: "Zahid",
-      dept: "Psychiatry",
-      qualification: "MBBS, MD",
-      age: "50",
-      gender: "Male",
-      specialist: "Mental Health",
-      number: "+880 1881665811",
-    },
-    {
-      name: "Hina",
-      dept: "Oncology",
-      qualification: "MD",
-      age: "41",
-      gender: "Female",
-      specialist: "Cancer",
-      number: "+880 1881665822",
-    },
-    {
-      name: "Rafiq",
-      dept: "Pulmonology",
-      qualification: "MBBS, MD",
-      age: "33",
-      gender: "Male",
-      specialist: "Lungs",
-      number: "+880 1881665833",
-    },
-    {
-      name: "Rubina",
-      dept: "Radiology",
-      qualification: "MBBS",
-      age: "44",
-      gender: "Female",
-      specialist: "Imaging",
-      number: "+880 1881665844",
-    },
-    {
-      name: "Samir",
-      dept: "Nephrology",
-      qualification: "MBBS, MD",
-      age: "36",
-      gender: "Male",
-      specialist: "Kidney",
-      number: "+880 1881665855",
-    },
-    {
-      name: "Kamal",
-      dept: "Hematology",
-      qualification: "MBBS, MS",
-      age: "43",
-      gender: "Male",
-      specialist: "Blood Disorders",
-      number: "+880 1881665866",
-    },
-    {
-      name: "Zara",
-      dept: "Rheumatology",
-      qualification: "MBBS",
-      age: "28",
-      gender: "Female",
-      specialist: "Joints",
-      number: "+880 1881665877",
-    },
-    {
-      name: "Asif",
-      dept: "Anesthesiology",
-      qualification: "MD",
-      age: "40",
-      gender: "Male",
-      specialist: "Anesthesia",
-      number: "+880 1881665888",
-    },
-    {
-      name: "Shireen",
-      dept: "Otolaryngology",
-      qualification: "MBBS",
-      age: "48",
-      gender: "Female",
-      specialist: "Ear, Nose, Throat",
-      number: "+880 1881665899",
-    },
-    {
-      name: "Salman",
-      dept: "Dentistry",
-      qualification: "BDS",
-      age: "32",
-      gender: "Male",
-      specialist: "Teeth",
-      number: "+880 1881665900",
-    },
-  ];
 
   const myReports = [
     {

@@ -1,12 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Dialog({ isOpen, closeDialog }) {
   const [doctorName, setDoctorName] = useState("");
   const [appointmentDate, setAppointmentDate] = useState("");
+  const dialogRef = useRef(null);
+
+  // Focus on the dialog when it opens
+  useEffect(() => {
+    if (isOpen && dialogRef.current) {
+      dialogRef.current.focus();
+    }
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!doctorName || !appointmentDate) {
+      alert("Please select a doctor and date.");
+      return;
+    }
+
     console.log("Doctor:", doctorName);
     console.log("Date:", appointmentDate);
     closeDialog();
@@ -20,6 +34,8 @@ export default function Dialog({ isOpen, closeDialog }) {
       className="fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 backdrop-blur-sm transition-opacity duration-300"
     >
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
         className="relative mx-auto w-full max-w-[24rem] rounded-lg overflow-hidden shadow-sm bg-white border-2 border-black"
       >
@@ -43,6 +59,7 @@ export default function Dialog({ isOpen, closeDialog }) {
                 value={doctorName}
                 onChange={(e) => setDoctorName(e.target.value)}
                 className="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                required
               >
                 <option value="" disabled>
                   Select doctor
@@ -60,7 +77,8 @@ export default function Dialog({ isOpen, closeDialog }) {
                 type="date"
                 value={appointmentDate}
                 onChange={(e) => setAppointmentDate(e.target.value)}
-                className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-black rounded-md px-3 py-2 focus:outline-none focus:border-slate-400 shadow-sm"
+                className="w-full bg-gray-50 placeholder:text-slate-400 text-slate-700 text-sm border border-black rounded-md px-3 py-2 focus:outline-none focus:border-primary-500 shadow-sm"
+                required
               />
             </div>
 
