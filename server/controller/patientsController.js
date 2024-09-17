@@ -63,7 +63,7 @@ exports.login = (req, res) => {
       res.cookie('token', token, {
         httpOnly: true, // Prevent client-side access to the cookie
         secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-       
+        maxAge: 7 * 24 * 60 * 60 * 1000 
       });
   
       res.status(200).json({ message: 'Login successful' ,
@@ -211,7 +211,7 @@ exports.getTestReportByPatientId = (req, res) => {
 
 // get my bill bt patient Id
 
-exports.getTestReportByPatientId = (req, res) => {
+exports.getTestBillByPatientId = (req, res) => {
   const  patient_id  = req.patient.id;
 
   // Validate if patient_id is provided

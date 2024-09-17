@@ -6,41 +6,34 @@ function MyReport() {
 
   return (
     <div className="h-full flex flex-col rounded-lg overflow-hidden">
-      <table className="w-full table-fixed">
-        <thead className=" bg-gray-700 text-white sticky top-0">
-          <tr>
-            <th className="px-4 py-2 text-start w-[40%] ">Test Name</th>
-            <th className="px-4 py-2 text-start ">Result</th>
-            <th className="px-4 py-2 text-start ">Amount</th>
-            <th className="px-4 py-2 text-start ">Comment</th>
-           
+      <table className="w-full table-fixed border-collapse">
+        <thead className=" text-white sticky top-0">
+          <tr >
+            <th className="border  px-4 py-2 text-start w-[40%]">Test Name</th>
+            <th className="border px-4 py-2 text-start">Result</th>
+            <th className="border px-4 py-2 text-start">Amount</th>
+            <th className="border px-4 py-2 text-start">Comment</th>
           </tr>
         </thead>
+        <tbody className="bg-white">
+          {myReports.map((report, index) => (
+            <tr key={index} className="text-black text-center">
+              <td className="border px-4 py-2 text-start w-[40%] overflow-hidden whitespace-nowrap text-ellipsis">
+                {report.test_name}
+              </td>
+              <td className="border px-4 py-2 text-start overflow-hidden whitespace-nowrap text-ellipsis">
+                {report.result}
+              </td>
+              <td className="border px-4 py-2 text-start overflow-hidden whitespace-nowrap text-ellipsis">
+                {report.amount}
+              </td>
+              <td className="border px-4 py-2 text-start overflow-hidden whitespace-nowrap text-ellipsis">
+                {report.comment}
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
-
-      <div className="overflow-auto flex-grow">
-        <table className="w-full bg-white table-fixed">
-          <tbody>
-            {myReports.map((report, index) => (
-              <tr key={index}>
-                <td className="border-b-2 px-4 py-2 text-start w-[40%] overflow-hidden whitespace-nowrap text-ellipsis">
-                  {report.testName}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start  overflow-hidden whitespace-nowrap text-ellipsis">
-                  {report.result}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start  overflow-hidden whitespace-nowrap text-ellipsis">
-                  {report.amount}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start overflow-hidden whitespace-nowrap text-ellipsis">
-                  {report.comment}
-                </td>
-               
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 }

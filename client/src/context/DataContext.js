@@ -11,7 +11,9 @@ export const DataProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [doctorInfo, setDoctorInfo] = useState([]);
   const [appointments, setAppointments] = useState([]);
-
+  const [myReports, setMyreports] = useState([]);
+  const [cabinRoomList, setcabinRoomList] = useState([]);
+  const [wardRoomList, setwardRoomList] = useState([]);
   // Fetching Doctor Info
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -58,458 +60,80 @@ export const DataProvider = ({ children }) => {
   // console.log(appointments);
   
 
+  // fetching my Reports
+  useEffect(() => {
+    const fetchMyreports = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/mytestreport`, {
+          withCredentials: true, // Ensure cookies are sent and received
+        });
+        
+        if (response.status === 200) {
+          setMyreports(response.data.data); // Assuming response.data contains the appointment info array
+        } else {
+          console.error('Failed to fetch Reports');
+        }
+      } catch (error) {
+        console.error('Error fetching appointment data:', error);
+       
+      }
+    };
 
+    fetchMyreports(); // Call the function inside useEffect
+  }, []);
+   console.log(myReports);
+  
+
+// fetch all cabin
+
+   useEffect(() => {
+    const fetchcabinRoomList = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/allcabin`, {
+          withCredentials: true, // Ensure cookies are sent and received
+        });
+        
+        if (response.status === 200) {
+          setcabinRoomList(response.data.data); // Assuming response.data contains the doctor info array
+        } else {
+          console.error('Failed to fetch wardRoomList');
+        }
+      } catch (error) {
+        console.error('Error fetching wardRoomList data:', error);
+      }
+    };
+
+    fetchcabinRoomList(); // Call the function inside useEffect
+  }, []);
+
+
+// fetch all ward
+   useEffect(() => {
+    const fetchwardRoomList = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/allward`, {
+          withCredentials: true, // Ensure cookies are sent and received
+        });
+        
+        if (response.status === 200) {
+          setwardRoomList(response.data.data); // Assuming response.data contains the doctor info array
+        } else {
+          console.error('Failed to fetch wardRoomList');
+        }
+      } catch (error) {
+        console.error('Error fetching wardRoomList data:', error);
+      }
+    };
+
+    fetchwardRoomList(); // Call the function inside useEffect
+  }, []);
 
  
 
 
-  const myReports = [
-    {
-      testName: "Blood test",
-      result: "Negative",
-      amount: "300 tk",
-      comment: "Take rest",
-    },
-    {
-      testName: "X-ray",
-      result: "Normal",
-      amount: "500 tk",
-      comment: "No issues found",
-    },
-    {
-      testName: "Urine test",
-      result: "Positive",
-      amount: "200 tk",
-      comment: "Drink more water",
-    },
-    {
-      testName: "MRI scan",
-      result: "Clear",
-      amount: "2000 tk",
-      comment: "Follow up needed",
-    },
-    {
-      testName: "CT scan",
-      result: "Abnormal",
-      amount: "1500 tk",
-      comment: "Consult specialist",
-    },
-    {
-      testName: "ECG",
-      result: "Normal",
-      amount: "800 tk",
-      comment: "Heart function normal",
-    },
-    {
-      testName: "Cholesterol test",
-      result: "High",
-      amount: "400 tk",
-      comment: "Control diet",
-    },
-    {
-      testName: "Liver function test",
-      result: "Normal",
-      amount: "600 tk",
-      comment: "No abnormalities",
-    },
-    {
-      testName: "Thyroid test",
-      result: "Low",
-      amount: "450 tk",
-      comment: "Medication prescribed",
-    },
-    {
-      testName: "Blood sugar test",
-      result: "High",
-      amount: "300 tk",
-      comment: "Monitor diet and sugar intake",
-    },
-    {
-      testName: "Allergy test",
-      result: "Positive",
-      amount: "700 tk",
-      comment: "Avoid allergens",
-    },
-    {
-      testName: "Vitamin D test",
-      result: "Deficient",
-      amount: "550 tk",
-      comment: "Take supplements",
-    },
-    {
-      testName: "Kidney function test",
-      result: "Normal",
-      amount: "650 tk",
-      comment: "Kidney is functioning well",
-    },
-    {
-      testName: "Hemoglobin test",
-      result: "Low",
-      amount: "350 tk",
-      comment: "Take iron supplements",
-    },
-    {
-      testName: "Eye test",
-      result: "20/20",
-      amount: "250 tk",
-      comment: "No vision issues",
-    },
-    {
-      testName: "Heart ultrasound",
-      result: "Healthy",
-      amount: "1800 tk",
-      comment: "No abnormalities detected",
-    },
-    {
-      testName: "Bone density test",
-      result: "Low",
-      amount: "900 tk",
-      comment: "Calcium supplements recommended",
-    },
-    {
-      testName: "Lung function test",
-      result: "Normal",
-      amount: "400 tk",
-      comment: "No issues with lung capacity",
-    },
-    {
-      testName: "Stool test",
-      result: "Negative",
-      amount: "350 tk",
-      comment: "No signs of infection",
-    },
-    {
-      testName: "HIV test",
-      result: "Negative",
-      amount: "1000 tk",
-      comment: "No further tests required",
-    },
-  ];
-  const cabinRoomList = [
-    {
-      name: "cabin-1",
-      roomNumber: "201-B",
-      assignedNurse: "Mrs. Tanjid Khan",
-      supervisingDoctor: "Dr. Younius Khan",
-      caseSummary: "Need 24 hours to observe",
-      bill: "3000 tk",
-    },
-    {
-      name: "cabin-2",
-      roomNumber: "202-A",
-      assignedNurse: "Mr. Aminul Islam",
-      supervisingDoctor: "Dr. Rakib Hasan",
-      caseSummary: "Post-surgery recovery",
-      bill: "4000 tk",
-    },
-    {
-      name: "cabin-3",
-      roomNumber: "203-C",
-      assignedNurse: "Mrs. Salma Begum",
-      supervisingDoctor: "Dr. Maria Haque",
-      caseSummary: "Observation for 48 hours",
-      bill: "3500 tk",
-    },
-    {
-      name: "cabin-4",
-      roomNumber: "204-D",
-      assignedNurse: "Ms. Faria Khan",
-      supervisingDoctor: "Dr. Faruk Ahmed",
-      caseSummary: "Routine checkup",
-      bill: "3200 tk",
-    },
-    {
-      name: "cabin-5",
-      roomNumber: "205-B",
-      assignedNurse: "Mr. Shahidul Islam",
-      supervisingDoctor: "Dr. Sarah Rahman",
-      caseSummary: "Patient recovering well",
-      bill: "5000 tk",
-    },
-    {
-      name: "cabin-6",
-      roomNumber: "206-A",
-      assignedNurse: "Mrs. Anika Zaman",
-      supervisingDoctor: "Dr. Karim Ullah",
-      caseSummary: "Undergoing treatment for infection",
-      bill: "4200 tk",
-    },
-    {
-      name: "cabin-7",
-      roomNumber: "207-C",
-      assignedNurse: "Mr. Sadiq Rahman",
-      supervisingDoctor: "Dr. Fahim Ahsan",
-      caseSummary: "Need 48 hours for further tests",
-      bill: "3800 tk",
-    },
-    {
-      name: "cabin-8",
-      roomNumber: "208-B",
-      assignedNurse: "Ms. Laila Chowdhury",
-      supervisingDoctor: "Dr. Kamal Uddin",
-      caseSummary: "Post-accident care",
-      bill: "6000 tk",
-    },
-    {
-      name: "cabin-9",
-      roomNumber: "209-A",
-      assignedNurse: "Mrs. Tania Noor",
-      supervisingDoctor: "Dr. Shahed Malik",
-      caseSummary: "Patient stable, needs observation",
-      bill: "3400 tk",
-    },
-    {
-      name: "cabin-10",
-      roomNumber: "210-C",
-      assignedNurse: "Mr. Omar Farooq",
-      supervisingDoctor: "Dr. Salim Sheikh",
-      caseSummary: "Critical condition, constant monitoring",
-      bill: "8000 tk",
-    },
-    {
-      name: "cabin-11",
-      roomNumber: "211-B",
-      assignedNurse: "Mrs. Nazia Rahman",
-      supervisingDoctor: "Dr. Jamil Haque",
-      caseSummary: "Observation for 72 hours",
-      bill: "4500 tk",
-    },
-    {
-      name: "cabin-12",
-      roomNumber: "212-A",
-      assignedNurse: "Ms. Rima Sultana",
-      supervisingDoctor: "Dr. Afzal Hossain",
-      caseSummary: "Awaiting test results",
-      bill: "3600 tk",
-    },
-    {
-      name: "cabin-13",
-      roomNumber: "213-D",
-      assignedNurse: "Mr. Iqbal Khan",
-      supervisingDoctor: "Dr. Nasrin Jahan",
-      caseSummary: "Undergoing treatment for high fever",
-      bill: "3300 tk",
-    },
-    {
-      name: "cabin-14",
-      roomNumber: "214-B",
-      assignedNurse: "Mrs. Sumaiya Khatun",
-      supervisingDoctor: "Dr. Imran Siddique",
-      caseSummary: "Post-op recovery, 48-hour observation",
-      bill: "5200 tk",
-    },
-    {
-      name: "cabin-15",
-      roomNumber: "215-A",
-      assignedNurse: "Mr. Rahat Choudhury",
-      supervisingDoctor: "Dr. Mahbub Alam",
-      caseSummary: "Stable condition, under treatment",
-      bill: "3100 tk",
-    },
-    {
-      name: "cabin-16",
-      roomNumber: "216-C",
-      assignedNurse: "Ms. Noor Jahan",
-      supervisingDoctor: "Dr. Tahmina Rahman",
-      caseSummary: "Routine post-surgery check",
-      bill: "3700 tk",
-    },
-    {
-      name: "cabin-17",
-      roomNumber: "217-B",
-      assignedNurse: "Mrs. Lubna Chowdhury",
-      supervisingDoctor: "Dr. Ehsan Ahmed",
-      caseSummary: "Under treatment for viral infection",
-      bill: "4300 tk",
-    },
-    {
-      name: "cabin-18",
-      roomNumber: "218-A",
-      assignedNurse: "Mr. Jamal Khan",
-      supervisingDoctor: "Dr. Kazi Rahim",
-      caseSummary: "Patient needs extended care",
-      bill: "5400 tk",
-    },
-    {
-      name: "cabin-19",
-      roomNumber: "219-D",
-      assignedNurse: "Ms. Arifa Khan",
-      supervisingDoctor: "Dr. Shakib Hasan",
-      caseSummary: "Scheduled for surgery",
-      bill: "7500 tk",
-    },
-    {
-      name: "cabin-20",
-      roomNumber: "220-B",
-      assignedNurse: "Mr. Hasan Hossain",
-      supervisingDoctor: "Dr. Tasnim Rahman",
-      caseSummary: "Under observation for 24 hours",
-      bill: "4100 tk",
-    },
-  ];
-
-  const wardRoomList = [
-    {
-      name: "ward-1",
-      roomNumber: "201-B",
-      assignedNurse: "Mrs. Tanjid Khan",
-      supervisingDoctor: "Dr. Younius Khan",
-      caseSummary: "Need 24 hours to observe",
-      bill: "3000 tk",
-    },
-    {
-      name: "ward-2",
-      roomNumber: "202-A",
-      assignedNurse: "Mr. Aminul Islam",
-      supervisingDoctor: "Dr. Rakib Hasan",
-      caseSummary: "Post-surgery recovery",
-      bill: "4000 tk",
-    },
-    {
-      name: "ward-3",
-      roomNumber: "203-C",
-      assignedNurse: "Mrs. Salma Begum",
-      supervisingDoctor: "Dr. Maria Haque",
-      caseSummary: "Observation for 48 hours",
-      bill: "3500 tk",
-    },
-    {
-      name: "ward-4",
-      roomNumber: "204-D",
-      assignedNurse: "Ms. Faria Khan",
-      supervisingDoctor: "Dr. Faruk Ahmed",
-      caseSummary: "Routine checkup",
-      bill: "3200 tk",
-    },
-    {
-      name: "ward-5",
-      roomNumber: "205-B",
-      assignedNurse: "Mr. Shahidul Islam",
-      supervisingDoctor: "Dr. Sarah Rahman",
-      caseSummary: "Patient recovering well",
-      bill: "5000 tk",
-    },
-    {
-      name: "ward-6",
-      roomNumber: "206-A",
-      assignedNurse: "Mrs. Anika Zaman",
-      supervisingDoctor: "Dr. Karim Ullah",
-      caseSummary: "Undergoing treatment for infection",
-      bill: "4200 tk",
-    },
-    {
-      name: "ward-7",
-      roomNumber: "207-C",
-      assignedNurse: "Mr. Sadiq Rahman",
-      supervisingDoctor: "Dr. Fahim Ahsan",
-      caseSummary: "Need 48 hours for further tests",
-      bill: "3800 tk",
-    },
-    {
-      name: "ward-8",
-      roomNumber: "208-B",
-      assignedNurse: "Ms. Laila Chowdhury",
-      supervisingDoctor: "Dr. Kamal Uddin",
-      caseSummary: "Post-accident care",
-      bill: "6000 tk",
-    },
-    {
-      name: "ward-9",
-      roomNumber: "209-A",
-      assignedNurse: "Mrs. Tania Noor",
-      supervisingDoctor: "Dr. Shahed Malik",
-      caseSummary: "Patient stable, needs observation",
-      bill: "3400 tk",
-    },
-    {
-      name: "ward-10",
-      roomNumber: "210-C",
-      assignedNurse: "Mr. Omar Farooq",
-      supervisingDoctor: "Dr. Salim Sheikh",
-      caseSummary: "Critical condition, constant monitoring",
-      bill: "8000 tk",
-    },
-    {
-      name: "ward-11",
-      roomNumber: "211-B",
-      assignedNurse: "Mrs. Nazia Rahman",
-      supervisingDoctor: "Dr. Jamil Haque",
-      caseSummary: "Observation for 72 hours",
-      bill: "4500 tk",
-    },
-    {
-      name: "ward-12",
-      roomNumber: "212-A",
-      assignedNurse: "Ms. Rima Sultana",
-      supervisingDoctor: "Dr. Afzal Hossain",
-      caseSummary: "Awaiting test results",
-      bill: "3600 tk",
-    },
-    {
-      name: "ward-13",
-      roomNumber: "213-D",
-      assignedNurse: "Mr. Iqbal Khan",
-      supervisingDoctor: "Dr. Nasrin Jahan",
-      caseSummary: "Undergoing treatment for high fever",
-      bill: "3300 tk",
-    },
-    {
-      name: "ward-14",
-      roomNumber: "214-B",
-      assignedNurse: "Mrs. Sumaiya Khatun",
-      supervisingDoctor: "Dr. Imran Siddique",
-      caseSummary: "Post-op recovery, 48-hour observation",
-      bill: "5200 tk",
-    },
-    {
-      name: "ward-15",
-      roomNumber: "215-A",
-      assignedNurse: "Mr. Rahat Choudhury",
-      supervisingDoctor: "Dr. Mahbub Alam",
-      caseSummary: "Stable condition, under treatment",
-      bill: "3100 tk",
-    },
-    {
-      name: "ward-16",
-      roomNumber: "216-C",
-      assignedNurse: "Ms. Noor Jahan",
-      supervisingDoctor: "Dr. Tahmina Rahman",
-      caseSummary: "Routine post-surgery check",
-      bill: "3700 tk",
-    },
-    {
-      name: "ward-17",
-      roomNumber: "217-B",
-      assignedNurse: "Mrs. Lubna Chowdhury",
-      supervisingDoctor: "Dr. Ehsan Ahmed",
-      caseSummary: "Under treatment for viral infection",
-      bill: "4300 tk",
-    },
-    {
-      name: "ward-18",
-      roomNumber: "218-A",
-      assignedNurse: "Mr. Jamal Khan",
-      supervisingDoctor: "Dr. Kazi Rahim",
-      caseSummary: "Patient needs extended care",
-      bill: "5400 tk",
-    },
-    {
-      name: "ward-19",
-      roomNumber: "219-D",
-      assignedNurse: "Ms. Arifa Khan",
-      supervisingDoctor: "Dr. Shakib Hasan",
-      caseSummary: "Scheduled for surgery",
-      bill: "7500 tk",
-    },
-    {
-      name: "ward-20",
-      roomNumber: "220-B",
-      assignedNurse: "Mr. Hasan Hossain",
-      supervisingDoctor: "Dr. Tasnim Rahman",
-      caseSummary: "Under observation for 24 hours",
-      bill: "4100 tk",
-    },
-  ];
+ 
+ 
+  
   const availableTest = [
     {
       name: "Blood test",

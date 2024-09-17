@@ -36,15 +36,15 @@ function Patient() {
 
   const router = useRouter();
   // Check if session exists
-  // useEffect(() => {
-  //   const patientsession = localStorage.getItem('patient');
+  useEffect(() => {
+    const patientsession = localStorage.getItem('patient');
 
-  //   if (!patientsession)
-  //   {
-  //     // Redirect to profile if session exists
-  //     router.push('/login');
-  //   }
-  // }, [router]);
+    if (!patientsession)
+    {
+      // Redirect to profile if session exists
+      router.push('/login');
+    }
+  }, [router]);
 
   const Handlelogout = async () => {
     try {

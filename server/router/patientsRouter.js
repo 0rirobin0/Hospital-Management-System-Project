@@ -1,5 +1,5 @@
 const express = require('express');
-const { register, login, logout, getAllDoctors, createAppointment, getAppointmentsByPatientId, getDoctorById, getTestReportByPatientId, getAllCabinRoom, getAmbulance, getAllWard, getAvailableTest, getEmergencyContact, getAllNurse, getPreviousHistoryByPatientId} = require('../controller/patientsController');
+const { register, login, logout, getAllDoctors, createAppointment, getAppointmentsByPatientId, getDoctorById, getTestReportByPatientId, getAllCabinRoom, getAmbulance, getAllWard, getAvailableTest, getEmergencyContact, getAllNurse, getPreviousHistoryByPatientId, getTestBillByPatientId} = require('../controller/patientsController');
 const patientsRouter = express.Router();
 const {isPatient} =  require('../auth/auth')
 
@@ -23,7 +23,7 @@ patientsRouter.get('/getdoctor/:doctor_id', getDoctorById);
 //get All report by patient id
 patientsRouter.get('/mytestreport',isPatient,getTestReportByPatientId );
 //get my bill by patient id
-patientsRouter.get('/mybill',isPatient,getTestReportByPatientId );
+patientsRouter.get('/mybill',isPatient,getTestBillByPatientId );
 //get all cabin room 
 patientsRouter.get('/allcabin',isPatient,getAllCabinRoom );
 //get all ambulance
