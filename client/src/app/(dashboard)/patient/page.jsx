@@ -12,28 +12,18 @@ import EmergencyContact from "@/component/Patient/EmergencyContact";
 import AllNurse from "@/component/Patient/AllNurse";
 import MyBill from "@/component/Patient/MyBill";
 import MyPreviousHistory from "@/component/Patient/MyPreviousHistory";
-<<<<<<< HEAD:client/src/app/(dashboard)/patient/page.js
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-=======
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from "axios";
 
->>>>>>> 1db9e6da91371db1303f202b3c1fc8e7ca802776:client/src/app/(dashboard)/patient/page.jsx
 
 function Patient() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const openDialog = () => setIsDialogOpen(true);
-  const closeDialog = () => setIsDialogOpen(false);
-
   const [activeComponent, setActiveComponent] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [age, setAge] = useState("");
-  const [patient, setPatient] = useState( {}
-  );
+  const [patient, setPatient] = useState({});
+  const [Error, setError] = useState('');
+
+
+
 
   useEffect(() => {
    
@@ -46,15 +36,8 @@ function Patient() {
     }
   }, []);
 
-  
-    
-
-
-
 
   const router = useRouter();
-<<<<<<< HEAD:client/src/app/(dashboard)/patient/page.js
-=======
   // Check if session exists
   useEffect(() => {
     const patientsession = localStorage.getItem('patient');
@@ -65,6 +48,7 @@ function Patient() {
       router.push('/login');
     }
   }, [router]);
+
 
   const Handlelogout = async ()=>
   {
@@ -78,7 +62,7 @@ function Patient() {
       if (response.status === 200) {
         
         // Remove patient data from localStorage
-       await localStorage.removeItem('patient');
+        localStorage.removeItem('patient');
 
         console.log('Logout successful:');
 
@@ -99,7 +83,6 @@ function Patient() {
 
 
 
->>>>>>> 1db9e6da91371db1303f202b3c1fc8e7ca802776:client/src/app/(dashboard)/patient/page.jsx
 
   return (
     <div className="h-full w-full flex space-x-2 bg-violet-500 ">
@@ -113,12 +96,12 @@ function Patient() {
           <div className="flex justify-center underline items-center h-auto font-bold bg-black text-white rounded-t-xl px-4 py-2">
             Service name
           </div>
-          <div className="bg-teal-200 flex-grow p-4 overflow-y-auto ">
+          <div className="bg-pink-400 flex-grow p-4 overflow-y-auto ">
             <button
-              onClick={openDialog}
+            
               className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
             >
-              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white bg-green-800 rounded-md group-hover:bg-opacity-0">
+              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                 Create Appointment
               </span>
             </button>
@@ -214,19 +197,20 @@ function Patient() {
           <div className="">
             <button onClick={Handlelogout} className="rounded-b-xl w-full px-4 py-2 bg-black text-white font-bold hover:bg-white hover:text-black">
               Logout
-            </button>
+            </button> 
           </div>
         </div>
       </div>
 
       <div className="w-4/5 h-full  py-2 pr-2 space-y-2 flex flex-col">
-        <div className="flex-shrink bg-white text-black rounded-xl p-2 text-2xl font-bold flex justify-center items-center">
-         Phone : {patient.phone}, Age:{patient.age}
+        <div className="flex-shrink bg-lime-400 rounded-xl p-2 text-2xl font-bold flex justify-center items-center">
+         Phone : 0{patient.phone}, Age:{patient.age}years
         </div>
 
-        <div className="flex-grow bg-teal-200 rounded-xl flex flex-col overflow-hidden">
-          <CreateAppointment isOpen={isDialogOpen} closeDialog={closeDialog} />
-
+        <div className="flex-grow bg-teal-300 rounded-xl flex flex-col overflow-hidden">
+          {activeComponent === "createAppointment" && (
+            <CreateAppointment onClose={() => setActiveComponent("")} />
+          )}
           {activeComponent === "myAppointments" && (
             <MyAppointment onClose={() => setActiveComponent("")} />
           )}
