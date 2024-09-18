@@ -38,7 +38,7 @@ function Doctor() {
   };
 
   return (
-    <div className="bg-slate-700 h-screen flex p-0.5  rounded-xl">
+    <div className="bg-gray-300 h-screen flex p-0.5  rounded-xl">
       <div className="w-[20%] p-2 flex flex-col space-y-2 rounded-xl">
         <div className="flex flex-col  flex-grow border-2 border-white rounded-xl">
           <div className="text-white bg-slate-800 rounded-t-xl flex justify-center p-2 font-bold text-xl tracking-wider">
