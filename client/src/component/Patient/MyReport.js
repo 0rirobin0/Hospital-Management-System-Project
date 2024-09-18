@@ -7,7 +7,7 @@ function MyReport() {
   return (
     <div className="h-full flex flex-col rounded-lg overflow-hidden">
       <table className="w-full table-fixed border-collapse">
-        <thead className=" text-white sticky top-0">
+        <thead className=" text-black sticky top-0">
           <tr >
             <th className="border  px-4 py-2 text-start w-[40%]">Test Name</th>
             <th className="border px-4 py-2 text-start">Result</th>

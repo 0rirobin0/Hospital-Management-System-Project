@@ -1,15 +1,60 @@
 import { useState } from 'react';
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 export default function DoctorLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState('');
+
+  const router = useRouter();
+
+  // Check if session exists
+  useEffect(() => {
+    const patientsession = localStorage.getItem('patient');
+    const doctorsession = localStorage.getItem('doctor');
+
+    if (patientsession && !doctorsession) {
+      // Redirect to patient profile if session exists
+      router.push('/patient');
+    } else if (!patientsession && doctorsession) {
+      // Redirect to doctor profile if session exists
+      router.push('/doctor');
+    }
+  }, [router]);
+
+  // console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle Doctor login logic here
-    console.log('Doctor Username:', username);
-    console.log('Doctor Password:', password);
+    setError(''); // Clear any previous errors
+
+ 
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/login`, {
+        phone,
+        password,
+      }, {
+        withCredentials: true, // Ensure cookies are sent and received
+      });
+
+      if (response.status === 200) {
+        const { id, name, phone, age } = response.data;
+
+        // Save the patient data to localStorage
+        localStorage.setItem('patient', JSON.stringify({ id, name, phone, age }));
+
+        console.log('Login successful:');
+
+        // Redirect to profile after successful login
+        router.push('/patient');
+      } else {
+        setError(response.data.error || 'Invalid phone or password');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      setError('Invalid phone or password');
+    }
   };
 
   return (

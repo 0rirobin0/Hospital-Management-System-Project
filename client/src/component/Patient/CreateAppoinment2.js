@@ -62,14 +62,14 @@ const handleSubmit = async(e) => {
 
 
   return (
-    <div className=" flex items-center justify-center bg-gray-100 h-full">
-      <div className="bg-black shadow-md rounded-3xl p-6 w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-center mb-6 text-white border-b-2 tracking-widest">
+    <div className=" flex items-center justify-center  h-full">
+      <div className="shadow-lg border-2 rounded-3xl p-6 w-full max-w-sm">
+        <h2 className="text-2xl font-bold text-center mb-6 text-black border-b-2 tracking-widest">
           Create Appointment
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="doctor" className="block text-white tracking-wide">
+            <label htmlFor="doctor" className="block text-black tracking-wide">
               Doctor Name
             </label>
             <select
@@ -93,7 +93,7 @@ const handleSubmit = async(e) => {
 
           {/* Date Input */}
           <div className="mb-4">
-            <label htmlFor="date" className="block text-white tracking-wide">
+            <label htmlFor="date" className="block text-black tracking-wide">
               Appointment Date
             </label>
             <input
@@ -107,7 +107,7 @@ const handleSubmit = async(e) => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="time" className="block text-white tracking-wide">
+            <label htmlFor="time" className="block text-black tracking-wide">
               Select a Time
             </label>
             <input
@@ -122,7 +122,7 @@ const handleSubmit = async(e) => {
 
           {/* Description Input */}
           <div className="mb-4">
-            <label htmlFor="description" className="block text-white tracking-wide">
+            <label htmlFor="description" className="block text-black tracking-wide">
               Description
             </label>
             <textarea
@@ -140,7 +140,7 @@ const handleSubmit = async(e) => {
             
             <button
               type="submit"
-              className="bg-blue-600 font-bold tracking-wider w-full text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+              className="bg-black border font-bold tracking-wider w-full text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
             >
               Confirm
             </button>
