@@ -69,7 +69,7 @@ const filteredHistory = previousHistory.filter(row =>
               ))
             ) : (
               <tr>
-                <td className="px-4 py-2 text-center" colSpan="6">
+                <td className="px-4 text-black py-2 text-center" colSpan="6">
                   No patients found with the given ID.
                 </td>
               </tr>

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState,useContext} from "react";
-import { GiConfirmed } from "react-icons/gi";
 import { useDataContext } from "@/context/DataContext";
 import axios from "axios";
 
@@ -62,8 +61,8 @@ const handleSubmit = async(e) => {
 
 
   return (
-    <div className=" flex items-center justify-center  h-full">
-      <div className="shadow-lg border-2 rounded-3xl p-6 w-full max-w-sm">
+    <div className=" flex items-center justify-center h-full">
+      <div className="shadow-lg border-2 rounded-3xl p-6 w-3/5 max-w-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-black border-b-2 tracking-widest">
           Create Appointment
         </h2>
@@ -72,11 +71,11 @@ const handleSubmit = async(e) => {
             <label htmlFor="doctor" className="block text-black tracking-wide">
               Doctor Name
             </label>
-            <select
+  <select
   id="doctor"
   value={doctor_id}
   onChange={(e) => setdoctor_id(e.target.value)}
-  className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+  className="w-full text-black px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
   required
 >
   <option value="" disabled>
@@ -101,7 +100,7 @@ const handleSubmit = async(e) => {
               id="date"
               value={date}
               onChange={(e) => setdate(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              className="w-full text-black px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
               required
             />
           </div>
@@ -115,7 +114,7 @@ const handleSubmit = async(e) => {
               id="time"
               value={time}
               onChange={(e) => settime(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              className="w-full text-black px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
               required
             />
           </div>
@@ -129,7 +128,7 @@ const handleSubmit = async(e) => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              className="w-full text-black px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
               rows="3"
               placeholder="Enter appointment details or description"
               required

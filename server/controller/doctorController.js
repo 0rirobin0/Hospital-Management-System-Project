@@ -29,7 +29,7 @@ exports.login = async (req, res) => {
     res.cookie('doctortoken', token, {
       httpOnly: true, // Prevent client-side access to the cookie
       secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-      maxAge: 3600000, // 1 hour
+      maxAge: 7 * 24 * 60 * 60 * 1000 , // 7 day
     });
 
     res.status(200).json({ 

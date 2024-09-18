@@ -6,6 +6,7 @@ import PreviousHistory from "@/component/Doctor/PreviousHistory"
 import TestReport from "@/component/Doctor/TestReport"
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import DoctorInfo from "@/component/Doctor/DoctorInfo";
 
 function Doctor() {
   const [activeComponent, setActiveComponent] = useState("");
@@ -89,7 +90,7 @@ function Doctor() {
 
             </div>
           </div>
-          <button onClick={Handlelogout} className="text-white bg-slate-800 rounded-b-xl flex justify-center p-2 font-bold text-xl tracking-wider">
+          <button onClick={Handlelogout} className="text-white bg-slate-800 hover:bg-white hover:text-black rounded-b-xl flex justify-center p-2 font-bold text-xl tracking-wider">
             <div className="flex justify-center items-center">
               <BiLogOut className="mr-2 text-2xl" />
               <div>Logout</div>
@@ -100,6 +101,9 @@ function Doctor() {
       <div className="w-[80%]  p-2 pl-0 flex flex-col space-y-2 rounded-xl">
       
         <div className=" flex-grow border-b-2 border-black overflow-hidden h-full rounded-xl">
+        {activeComponent === "" && (
+            <DoctorInfo onClose={() => setActiveComponent("")} />
+          )}
         {activeComponent === "previousHistory" && (
             <PreviousHistory onClose={() => setActiveComponent("")} />
           )}
