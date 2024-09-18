@@ -38,10 +38,10 @@ function Doctor() {
   };
 
   return (
-    <div className="bg-emerald-200 h-screen flex p-0.5  rounded-xl">
+    <div className="bg-slate-700 h-screen flex p-0.5  rounded-xl">
       <div className="w-[20%] p-2 flex flex-col space-y-2 rounded-xl">
-        <div className="flex flex-col  flex-grow border-2 border-black rounded-xl">
-          <div className="text-white bg-black rounded-t-xl flex justify-center p-2 font-bold text-xl tracking-wider">
+        <div className="flex flex-col  flex-grow border-2 border-white rounded-xl">
+          <div className="text-white bg-slate-800 rounded-t-xl flex justify-center p-2 font-bold text-xl tracking-wider">
             <div className="flex justify-center items-center">
               <TbReportMedical className="mr-2 text-2xl" />
               <div>Patient Info</div>
@@ -89,7 +89,7 @@ function Doctor() {
 
             </div>
           </div>
-          <button onClick={Handlelogout} className="text-white bg-black rounded-b-xl flex justify-center p-2 font-bold text-xl tracking-wider">
+          <button onClick={Handlelogout} className="text-white bg-slate-800 rounded-b-xl flex justify-center p-2 font-bold text-xl tracking-wider">
             <div className="flex justify-center items-center">
               <BiLogOut className="mr-2 text-2xl" />
               <div>Logout</div>

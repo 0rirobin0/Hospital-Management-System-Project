@@ -21,6 +21,7 @@ export const DataProvider = ({ children }) => {
   const [myBillList, setmyBillList] = useState([]);
   const [myPreviousHistory, setmyPreviousHistory] = useState([]);
 
+ 
   // Fetching Doctor Info
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -248,7 +249,6 @@ useEffect(() => {
 }, []);
 
  
-
 //fetch  myPreviousHistory
 
 useEffect(() => {
@@ -270,9 +270,12 @@ useEffect(() => {
 
   fetchPreviousHistory(); // Call the function inside useEffect
 }, []);
+   
+
+                                        // Doctor Page Data 
 
 
-  
+// console.log(previousHistory);
 
 
   return (
@@ -289,6 +292,7 @@ useEffect(() => {
         nurseInfo,
         myBillList,
         myPreviousHistory,
+     
       }}
     >
       {children}

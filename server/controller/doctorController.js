@@ -50,3 +50,34 @@ exports.logout = (req, res) => {
 };
 
 // ===== Doctor Services =====
+// get all Patient History
+exports.getAllPatientHistory = (req, res) => {
+  const sql = 'SELECT * FROM previous_history';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'previous_history retrieved successfully',
+      data: results
+    });
+  });
+};
+
+// get all Patient report
+exports.getAllPatientReport = (req, res) => {
+  const sql = 'SELECT * FROM testreport';
+  
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    
+    res.status(200).json({
+      message: 'test report retrieved successfully',
+      data: results
+    });
+  });
+};
