@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function PatientRegister() {
   const [name, setName] = useState("");
@@ -8,10 +10,36 @@ export default function PatientRegister() {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
+ const router = useRouter();
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Logic for Patient registration
+  
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/register`, {
+       name,
+        phone,
+        age,
+        gender,
+        password,
+      }, {
+        withCredentials: true, // Ensure cookies are sent and received
+      });
+
+      if (response.status === 201) {
+       
+
+        console.log('Registration successful');
+        alert("Registration successful");
+
+        // Redirect to profile after successful login
+        router.push('/login');
+      } else {
+        
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      
+    }
     console.log("Patient Registration:", {
       name,
       phone,

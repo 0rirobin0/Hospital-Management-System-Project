@@ -6,36 +6,34 @@ function AvailableTest() {
 
   return (
     <div className="h-full flex flex-col rounded-lg overflow-hidden">
-      <table className="w-full table-fixed">
-        <thead className=" bg-gray-700 text-white sticky top-0">
+    <div className="overflow-auto flex-grow">
+      <table className="w-full bg-white table-fixed border-collapse border border-black">
+        <thead className="bg-gray-700 text-black sticky top-0">
           <tr>
-            <th className="px-4 py-2 text-start ">Test Name</th>
-            <th className="px-4 py-2 text-start ">Amount</th>
-            <th className="px-4 py-2 text-start ">Available Time</th>
+            <th className="px-4 py-2 text-start border border-black">Test Name</th>
+            <th className="px-4 py-2 text-start border border-black">Amount</th>
+            <th className="px-4 py-2 text-start border border-black">Available Time</th>
           </tr>
         </thead>
+        <tbody>
+          {availableTest.map((test, index) => (
+            <tr key={index} className="text-black">
+              <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+                {test.test_name}
+              </td>
+              <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+                {test.amount}
+              </td>
+              <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+                {test.available_time}
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
-
-      <div className="overflow-auto flex-grow">
-        <table className="w-full bg-white table-fixed">
-          <tbody>
-            {availableTest.map((test, index) => (
-              <tr key={index}>
-                <td className="border-b-2 px-4 py-2 text-start overflow-hidden whitespace-nowrap text-ellipsis">
-                  {test.name}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start  overflow-hidden whitespace-nowrap text-ellipsis">
-                  {test.amount}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start  overflow-hidden whitespace-nowrap text-ellipsis">
-                  {test.time}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
+  </div>
+  
   );
 }
 

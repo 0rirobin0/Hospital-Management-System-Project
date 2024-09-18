@@ -53,7 +53,7 @@ export default function PatientLogin() {
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      setError('An error occurred during login');
+      setError('Invalid phone or password');
     }
   };
 
@@ -66,7 +66,7 @@ export default function PatientLogin() {
         <input
           type="text"
           id="patient-phone"
-          className="w-full mt-2 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
+          className="w-full mt-2 p-2 border text-black border-black rounded-lg focus:border-2  focus:border-black"
           placeholder="Enter your phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
@@ -79,7 +79,7 @@ export default function PatientLogin() {
         <input
           type="password"
           id="patient-password"
-          className="w-full mt-2 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
+          className="w-full mt-2 p-2 border text-black border-black rounded-lg focus:border-2  focus:border-black"
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -101,7 +101,9 @@ export default function PatientLogin() {
             Sign up
           </Link>
         </p>
+        
       </div>
+      <p className="text-red mx-auto">{error}</p>
     </form>
   );
 }

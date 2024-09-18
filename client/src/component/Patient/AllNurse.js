@@ -6,44 +6,42 @@ function AllNurse() {
 
   return (
     <div className="h-full flex flex-col rounded-lg overflow-hidden">
-      <table className="w-full table-fixed">
-        <thead className=" bg-gray-700 text-white sticky top-0">
-          <tr>
-            <th className="px-4 py-2 text-start ">Name</th>
-            <th className="px-4 py-2 text-start ">Gender</th>
-            <th className="px-4 py-2 text-start ">Allocation</th>
-            <th className="px-4 py-2 text-start ">Address</th>
-            <th className="px-4 py-2 text-start ">Number</th>
+  <div className="overflow-auto flex-grow">
+    <table className="w-full bg-white table-fixed border-collapse border border-black">
+      <thead className=" text-black sticky top-0">
+        <tr>
+          <th className="px-4 py-2 text-start border border-black">Name</th>
+          <th className="px-4 py-2 text-start border border-black">Gender</th>
+          <th className="px-4 py-2 text-start border border-black">Allocation</th>
+          <th className="px-4 py-2 text-start border border-black">Address</th>
+          <th className="px-4 py-2 text-start border border-black">Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        {nurseInfo.map((doctor, index) => (
+          <tr key={index} className="text-black text-center">
+            <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+              {doctor.name}
+            </td>
+            <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+              {doctor.gender}
+            </td>
+            <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+              {doctor.allocation}
+            </td>
+            <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+              {doctor.address}
+            </td>
+            <td className="border-b-2 px-4 py-2 text-start border border-black overflow-hidden whitespace-nowrap text-ellipsis">
+              {doctor.phone}
+            </td>
           </tr>
-        </thead>
-      </table>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
 
-      <div className="overflow-auto flex-grow">
-        <table className="w-full bg-white table-fixed">
-          <tbody>
-            {nurseInfo.map((doctor, index) => (
-              <tr key={index}>
-                <td className="border-b-2 px-4 py-2 text-start  overflow-hidden whitespace-nowrap text-ellipsis">
-                  {doctor.name}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start  overflow-hidden whitespace-nowrap text-ellipsis">
-                  {doctor.gender}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start  overflow-hidden whitespace-nowrap text-ellipsis">
-                  {doctor.allocation}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start   overflow-hidden whitespace-nowrap text-ellipsis">
-                  {doctor.address}
-                </td>
-                <td className="border-b-2 px-4 py-2 text-start overflow-hidden whitespace-nowrap text-ellipsis">
-                  {doctor.number}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
   );
 }
 
