@@ -15,6 +15,7 @@ import MyPreviousHistory from "@/component/Patient/MyPreviousHistory";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import PatientInfo from "@/component/Patient/PatientInfo";
 
 function Patient() {
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -199,6 +200,9 @@ function Patient() {
         </div>
 
         <div className="flex-grow bg-teal-300 rounded-xl flex flex-col overflow-hidden">
+        {activeComponent === "" && (
+            <PatientInfo onClose={() => setActiveComponent("")} />
+          )}
           {activeComponent === "createAppointment" && (
             <CreateAppointment onClose={() => setActiveComponent("")} />
           )}
