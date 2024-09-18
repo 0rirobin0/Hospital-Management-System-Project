@@ -34,6 +34,7 @@ exports.login = async (req, res) => {
 
     res.status(200).json({ 
       message: 'Login successful',
+      id: doctor.doctor_id,
       name : doctor.name,
       department : doctor.department,
       specialist : doctor.specialist

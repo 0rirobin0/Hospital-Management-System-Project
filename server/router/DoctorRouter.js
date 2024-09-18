@@ -9,7 +9,7 @@ const { isDoctor } = require('../auth/auth');
 
 
 // Login Route
-doctorRouter.get('/login', login);
+doctorRouter.post('/login', login);
 
 // Logout Route
 doctorRouter.get('/logout',isDoctor, logout);

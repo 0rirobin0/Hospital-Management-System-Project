@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 export default function DoctorLogin() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [phone, setphone] = useState('');
+  const [password, setpassword] = useState('');
 
   const [error, setError] = useState('');
 
@@ -27,11 +27,11 @@ export default function DoctorLogin() {
   // console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // Clear any previous errors
-
+   console.log(phone,password);
+   
  
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/patients/login`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/doctor/login`, {
         phone,
         password,
       }, {
@@ -39,15 +39,15 @@ export default function DoctorLogin() {
       });
 
       if (response.status === 200) {
-        const { id, name, phone, age } = response.data;
+        const { id, name, department, specialist } = response.data;
 
         // Save the patient data to localStorage
-        localStorage.setItem('patient', JSON.stringify({ id, name, phone, age }));
+        localStorage.setItem('doctor', JSON.stringify({ id, name, department, specialist }));
 
         console.log('Login successful:');
 
         // Redirect to profile after successful login
-        router.push('/patient');
+        router.push('/doctor');
       } else {
         setError(response.data.error || 'Invalid phone or password');
       }
@@ -60,31 +60,33 @@ export default function DoctorLogin() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-4">
-        <label htmlFor="Doctor-username" className="block text-white tracking-wide">Doctor phone</label>
+        <label htmlFor="Doctor-phone" className="block text-white tracking-wide">Doctor phone</label>
         <input
           type="text"
           id="Doctor-phone"
-          className="w-full mt-2 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
+          className="w-full mt-2 p-2 border text-black border-black rounded-lg focus:border-2  focus:border-black"
           placeholder="Enter your phone"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={phone}
+          onChange={(e) => setphone(e.target.value)}
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="Doctor-password" className="block text-white tracking-wide">Password</label>
+        <label htmlFor="Doctor-password" className="block text-white tracking-wide">password</label>
         <input
           type="password"
           id="Doctor-password"
-          className="w-full mt-2 p-2 border border-black rounded-lg focus:border-2  focus:border-black"
+          className="w-full mt-2 p-2 border text-black border-black rounded-lg focus:border-2  focus:border-black"
           placeholder="Enter your password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setpassword(e.target.value)}
         />
       </div>
       <button type="submit" className="font-bold w-full bg-black text-white p-2 rounded-lg hover:bg-white hover:text-black transition-colors tracking-wider">
         Sign in as Doctor
       </button>
     
+
+      <p className="text-red mx-auto">{error}</p>
     </form>
   );
 }

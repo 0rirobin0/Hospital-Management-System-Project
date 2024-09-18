@@ -4,9 +4,38 @@ import { BiLogOut } from "react-icons/bi";
 import { TbReportMedical } from "react-icons/tb";
 import PreviousHistory from "@/component/Doctor/PreviousHistory"
 import TestReport from "@/component/Doctor/TestReport"
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function Doctor() {
   const [activeComponent, setActiveComponent] = useState("");
+  const [Error, setError] = useState("");
+   const router = useRouter();
+  const Handlelogout = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/doctor/logout`,
+        {
+          withCredentials: true, // Ensure cookies are sent and received
+        }
+      );
+
+      if (response.status === 200) {
+        // Remove patient data from localStorage
+        localStorage.removeItem("doctor");
+
+        console.log("Logout successful:");
+
+        // Redirect to  login
+        router.push("/login");
+      } else {
+        setError(response.data.error || "Logout failed");
+      }
+    } catch (error) {
+      console.error("Error in Logout:", error);
+      setError("An error occurred during logout");
+    }
+  };
 
   return (
     <div className="bg-emerald-200 h-screen flex p-0.5  rounded-xl">
@@ -60,7 +89,7 @@ function Doctor() {
 
             </div>
           </div>
-          <button className="text-white bg-black rounded-b-xl flex justify-center p-2 font-bold text-xl tracking-wider">
+          <button onClick={Handlelogout} className="text-white bg-black rounded-b-xl flex justify-center p-2 font-bold text-xl tracking-wider">
             <div className="flex justify-center items-center">
               <BiLogOut className="mr-2 text-2xl" />
               <div>Logout</div>
